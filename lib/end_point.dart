@@ -16,45 +16,16 @@ class KidsStory extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
+      //darkTheme: AppTheme.darkTheme,
       // themeMode: themeProvider.themeMode,
       localizationsDelegates: [...context.localizationDelegates],
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      home: HomeScreen(),
-      initialRoute: "AppRoutes.splash",
+      initialRoute: AppRoutes.login,
 
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: 10,
-          children: [
-            TextButton(onPressed: () {
-              ToastService.success(context, 'Success Message');
-            }, child: Text('success')),
-            TextButton(onPressed: () {
-              ToastService.warning(context, 'Warning Message');
-            }, child: Text('warning')),
-            TextButton(onPressed: () {
-              ToastService.error(context, 'Error Message');
-            }, child: Text('error')),
-            TextButton(onPressed: () {
-              ToastService.info(context, 'Info Message');
-            }, child: Text('info')),
-          ],
-        ),
-      ),
-    );
-  }
-}

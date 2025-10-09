@@ -43,6 +43,7 @@ flutter:
 
   assets:
      - assets/translations/
+     - assets/svg/
 
 
 

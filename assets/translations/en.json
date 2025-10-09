@@ -1,3 +1,14 @@
 {
-  "welcome": "Welcome"
+  "welcome": "Welcome Back!",
+  "sing_in_to_continuo": "Sing in to continuo",
+  "email": "Email",
+  "password": "Password",
+  "for_egot_password": "Forgot password?",
+  "login": "Sing in",
+  "dont_have_account": "Don't have an account?",
+  "register": "Sing Up",
+  "name": "Name",
+  "already_have_account": "Already have an account?",
+  "create_new_account": "Create New Account",
+  "register_hint": "join us and start the adventure"
 }

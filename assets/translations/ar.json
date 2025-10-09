@@ -1,3 +1,14 @@
 {
-  "welcome": "مرحبا"
+  "welcome": "مرحبا بعودتك",
+  "sing_in_to_continuo": "سجل دخولك و اكمل متابعه",
+  "email": "البريد الالكتروني",
+  "password": "كلمة السر",
+  "for_egot_password": "نسيت كلمة السر؟",
+  "login": "تسجيل دخول",
+  "dont_have_account": "ليش لديك حساب؟",
+  "register": "انشاء حساب",
+  "name": "الاسم",
+  "already_have_account": "لدي حساب بلفعل؟",
+  "create_new_account": "انشاء حساب جديد",
+  "register_hint": "انضم إلينا وابدأ المغامرة"
 }

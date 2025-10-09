@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kids_story_ai/features/auth/ui/screens/login/login_screen.dart';
+import 'package:kids_story_ai/features/auth/ui/screens/register/register_screen.dart';
+
+import 'app_routes.dart';
 
 class RouteGenerator {
   static Route? generateRoute(RouteSettings settings) {
@@ -7,9 +11,13 @@ class RouteGenerator {
     final args = settings.arguments;
 
     switch (routeName) {
-      default:
-        return null;
+      case AppRoutes.login:
+        return _buildRoute(const LoginScreen());
+      case AppRoutes.register:
+      return  _buildRouteWithAnimation(RegisterScreen());
+
     }
+    return null;
   }
 
   static MaterialPageRoute _buildRoute(
