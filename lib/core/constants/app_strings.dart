@@ -11,4 +11,12 @@ abstract class AppStrings{
   static const String newAccount = 'create_new_account';
   static const String registerHint = 'register_hint';
   static const String name = 'name';
+  static const String forgotPasswordHint = 'forgot_hint';
+  static const String backToLogin = 'back_to_login';
+  static const String sendCode = 'send_code';
+  static const String resetPassword = 'reset_password';
+  static const String resetPasswordHint = 'reset_password_hint';
+  static const String reset = 'reset';
+  static const String code = 'code';
+  static const String newPassword = 'new_password';
 }

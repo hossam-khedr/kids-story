@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kids_story_ai/core/utils/responsive_helper.dart';
+import 'package:kids_story_ai/core/utils/helpers/responsive_helper.dart';
 
 import '../constants/app_colors.dart';
 class LightTheme {

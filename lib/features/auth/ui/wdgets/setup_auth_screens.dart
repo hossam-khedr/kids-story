@@ -9,6 +9,7 @@ class SetupAuthScreens extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
+      alignment: Alignment.center,
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(

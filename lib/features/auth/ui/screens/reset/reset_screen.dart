@@ -1,29 +1,30 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:kids_story_ai/config/routes/app_routes.dart';
-import 'package:kids_story_ai/core/constants/app_assets.dart';
-import 'package:kids_story_ai/core/constants/app_strings.dart';
 import 'package:kids_story_ai/core/utils/helpers/navigation_helper.dart';
-import 'package:kids_story_ai/core/utils/helpers/responsive_helper.dart';
 import 'package:kids_story_ai/core/utils/validators.dart';
-import 'package:kids_story_ai/features/auth/ui/wdgets/auth_button.dart';
-import 'package:kids_story_ai/core/widgets/app_text.dart';
-import 'package:kids_story_ai/features/auth/ui/wdgets/auth_text_field.dart';
-import 'package:kids_story_ai/features/auth/ui/wdgets/custom_text_span.dart';
-import 'package:kids_story_ai/features/auth/ui/wdgets/setup_auth_screens.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+import '../../../../../core/constants/app_assets.dart';
+import '../../../../../core/constants/app_strings.dart';
+import '../../../../../core/utils/helpers/responsive_helper.dart';
+import '../../wdgets/auth_button.dart';
+import '../../../../../core/widgets/app_text.dart';
+import '../../wdgets/auth_text_field.dart';
+import '../../wdgets/setup_auth_screens.dart';
+
+class ResetPasswordScreen extends StatefulWidget {
+  const ResetPasswordScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final codeController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -33,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
         body: Padding(
           padding: ResponsiveHelper.r.paddingSymmetric(horizontal: 10),
           child: SingleChildScrollView(
+            clipBehavior: Clip.none,
             child: Form(
               key: formKey,
               child: Column(
@@ -44,13 +46,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Gap(30),
                   AppText(
-                    data: AppStrings.welcome.tr(),
+                    data: AppStrings.resetPassword.tr(),
                     style: Theme.of(context).textTheme.displayLarge,
                   ),
                   Gap(10),
-                  AppText(
-                    data: AppStrings.singInToCon.tr(),
-                    style: Theme.of(context).textTheme.titleSmall,
+                  Center(
+                    child: AppText(
+                      data: AppStrings.resetPasswordHint.tr(),
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
                   ),
                   Gap(30),
                   Card(
@@ -67,42 +71,44 @@ class _LoginScreenState extends State<LoginScreen> {
                           AuthTextField(
                             icon: AppAssets.email,
                             controller: emailController,
+                            validator: (v) => Validator.validateEmail(v),
                             keyboardType: TextInputType.emailAddress,
-                            validator: (v)=>Validator.validateEmail(v),
                           ),
                           AppText(
-                            data: AppStrings.password.tr(),
+                            data: AppStrings.code.tr(),
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                           AuthTextField(
-                            icon: AppAssets.password,
-                            controller: passwordController,
-                            keyboardType: TextInputType.visiblePassword,
-                            validator: (v)=>Validator.validatePassword(v),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              NavigationHelper.pushNamed(
-                                context,
-                                AppRoutes.forgot,
-                              );
-                            },
-                            child: AppText(data: AppStrings.forgot.tr()),
-                          ),
-                          AppButton(text: AppStrings.login.tr(),onTap: (){
-                            if(formKey.currentState!.validate()){}
-                          },),
-                          Gap(15),
-                          Center(
-                            child: CustomTextSpan(
-                              hint: AppStrings.dontHaveAccount.tr(),
-                              action: AppStrings.register.tr(),
-                              onTap: () => NavigationHelper.pushNamed(
-                                context,
-                                AppRoutes.register,
-                              ),
+                            icon: AppAssets.code,
+                            controller: codeController,
+                            validator: (v) => Validator.validateRequired(
+                              v,
+                              codeController.text,
                             ),
+                            keyboardType: TextInputType.text,
                           ),
+                          AppText(
+                            data: AppStrings.newPassword.tr(),
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          AuthTextField(icon: AppAssets.password,
+                            controller: passwordController,
+                            validator: (v) => Validator.validatePassword(v),
+                            keyboardType: TextInputType.visiblePassword,),
+                          Gap(15),
+                          AppButton(
+                            text: AppStrings.reset.tr(),
+                            onTap: () {
+                              if(formKey.currentState!.validate()){
+                                NavigationHelper.pushNamedAndRemoveUntil(
+                                  context,
+                                  AppRoutes.login,
+                                );
+                              }
+                            }
+                                ,
+                          ),
+                          Gap(15),
                         ],
                       ),
                     ),

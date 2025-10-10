@@ -10,5 +10,13 @@
   "name": "Name",
   "already_have_account": "Already have an account?",
   "create_new_account": "Create New Account",
-  "register_hint": "join us and start the adventure"
+  "register_hint": "join us and start the adventure",
+  "forgot_hint": "Well send you a reset code",
+  "back_to_login": "Back to Sing in",
+  "send_code": "Send Code",
+  "reset_password": "Reset Password",
+  "reset_password_hint": "Enter the required data and the copied code to be able to change the password",
+  "reset": "Reset",
+  "code": "Code",
+  "new_password": "New Password"
 }

@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:kids_story_ai/core/utils/responsive_helper.dart';
+import 'package:kids_story_ai/core/utils/helpers/responsive_helper.dart';
 import 'package:kids_story_ai/core/utils/toast_service.dart';
 
 import 'config/routes/app_routes.dart';

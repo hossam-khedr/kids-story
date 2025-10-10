@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kids_story_ai/core/constants/app_colors.dart';
-import 'package:kids_story_ai/core/utils/responsive_helper.dart';
+import 'package:kids_story_ai/core/utils/helpers/responsive_helper.dart';
 import 'package:kids_story_ai/core/widgets/app_text.dart';
 
 class AppButton extends StatelessWidget {
