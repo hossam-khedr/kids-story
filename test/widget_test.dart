@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:kids_story_ai/end_point.dart';
+import 'package:kids_story_ai/app/end_point.dart';
 
 import 'package:kids_story_ai/main.dart';
 

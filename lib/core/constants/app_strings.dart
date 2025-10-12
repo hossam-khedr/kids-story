@@ -19,4 +19,5 @@ abstract class AppStrings{
   static const String reset = 'reset';
   static const String code = 'code';
   static const String newPassword = 'new_password';
+  static const String registerSuccessMessage = 'register_success_message';
 }

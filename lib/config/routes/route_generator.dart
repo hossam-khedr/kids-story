@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kids_story_ai/features/auth/ui/screens/forgot/forgot_screen.dart';
-import 'package:kids_story_ai/features/auth/ui/screens/login/login_screen.dart';
-import 'package:kids_story_ai/features/auth/ui/screens/register/register_screen.dart';
-import 'package:kids_story_ai/features/auth/ui/screens/reset/reset_screen.dart';
-
-import 'app_routes.dart';
+import 'package:kids_story_ai/app/di.dart';
+import 'package:kids_story_ai/app/index.dart';
 
 class RouteGenerator {
   static Route? generateRoute(RouteSettings settings) {
@@ -14,14 +10,23 @@ class RouteGenerator {
 
     switch (routeName) {
       case AppRoutes.login:
-        return _buildRoute(const LoginScreen());
+        return _buildRoute(
+          BlocProvider(
+              child: LoginScreen(),
+              create: (_) => getIt<AuthCubit>(),
+          ),
+        );
       case AppRoutes.register:
-      return  _buildRouteWithAnimation(RegisterScreen());
+        return _buildRouteWithAnimation(
+          BlocProvider(
+            child: RegisterScreen(),
+            create: (_) => getIt<AuthCubit>(),
+          ),
+        );
       case AppRoutes.forgot:
-        return  _buildRouteWithAnimation(ForgotScreen());
+        return _buildRouteWithAnimation(ForgotScreen());
       case AppRoutes.reset:
-        return  _buildRouteWithAnimation(ResetPasswordScreen());
-
+        return _buildRouteWithAnimation(ResetPasswordScreen());
     }
     return null;
   }

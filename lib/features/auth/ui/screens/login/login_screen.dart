@@ -1,18 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:kids_story_ai/app/index.dart' hide State;
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gap/gap.dart';
-import 'package:kids_story_ai/config/routes/app_routes.dart';
-import 'package:kids_story_ai/core/constants/app_assets.dart';
-import 'package:kids_story_ai/core/constants/app_strings.dart';
-import 'package:kids_story_ai/core/utils/helpers/navigation_helper.dart';
-import 'package:kids_story_ai/core/utils/helpers/responsive_helper.dart';
-import 'package:kids_story_ai/core/utils/validators.dart';
-import 'package:kids_story_ai/features/auth/ui/wdgets/auth_button.dart';
-import 'package:kids_story_ai/core/widgets/app_text.dart';
-import 'package:kids_story_ai/features/auth/ui/wdgets/auth_text_field.dart';
-import 'package:kids_story_ai/features/auth/ui/wdgets/custom_text_span.dart';
-import 'package:kids_story_ai/features/auth/ui/wdgets/setup_auth_screens.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -29,85 +16,109 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SetupAuthScreens(
-        body: Padding(
-          padding: ResponsiveHelper.r.paddingSymmetric(horizontal: 10),
-          child: SingleChildScrollView(
-            child: Form(
-              key: formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    AppAssets.logo,
-                    height: ResponsiveHelper.r.height(10),
-                  ),
-                  Gap(30),
-                  AppText(
-                    data: AppStrings.welcome.tr(),
-                    style: Theme.of(context).textTheme.displayLarge,
-                  ),
-                  Gap(10),
-                  AppText(
-                    data: AppStrings.singInToCon.tr(),
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  Gap(30),
-                  Card(
-                    child: Padding(
-                      padding: ResponsiveHelper.r.paddingAll(18),
-                      child: Column(
-                        spacing: 10,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AppText(
-                            data: AppStrings.email.tr(),
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          AuthTextField(
-                            icon: AppAssets.email,
-                            controller: emailController,
-                            keyboardType: TextInputType.emailAddress,
-                            validator: (v)=>Validator.validateEmail(v),
-                          ),
-                          AppText(
-                            data: AppStrings.password.tr(),
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          AuthTextField(
-                            icon: AppAssets.password,
-                            controller: passwordController,
-                            keyboardType: TextInputType.visiblePassword,
-                            validator: (v)=>Validator.validatePassword(v),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              NavigationHelper.pushNamed(
-                                context,
-                                AppRoutes.forgot,
-                              );
-                            },
-                            child: AppText(data: AppStrings.forgot.tr()),
-                          ),
-                          AppButton(text: AppStrings.login.tr(),onTap: (){
-                            if(formKey.currentState!.validate()){}
-                          },),
-                          Gap(15),
-                          Center(
-                            child: CustomTextSpan(
-                              hint: AppStrings.dontHaveAccount.tr(),
-                              action: AppStrings.register.tr(),
-                              onTap: () => NavigationHelper.pushNamed(
-                                context,
-                                AppRoutes.register,
+      body: BlocListener<AuthCubit, AuthStates>(
+        listener: (context, state) {
+          if (state.isLoginLoading) {
+            DialogService.showLoading(context);
+          }
+          if (state.isLoginError) {
+            NavigationHelper.pop(context);
+            ToastService.error(context, state.errorMessage);
+          }
+          if (state.isLoginSuccess) {
+            NavigationHelper.pop(context);
+            ToastService.success(context, 'Login Successfully');
+            // NavigationHelper.pushNamedAndRemoveUntil(context, AppRoutes.login);
+          }
+        },
+        child: SetupAuthScreens(
+          body: Padding(
+            padding: ResponsiveHelper.r.paddingSymmetric(horizontal: 10),
+            child: SingleChildScrollView(
+              child: Form(
+                key: formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      AppAssets.logo,
+                      height: ResponsiveHelper.r.height(10),
+                    ),
+                    Gap(30),
+                    AppText(
+                      data: AppStrings.welcome.tr(),
+                      style: Theme.of(context).textTheme.displayLarge,
+                    ),
+                    Gap(10),
+                    AppText(
+                      data: AppStrings.singInToCon.tr(),
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    Gap(30),
+                    Card(
+                      child: Padding(
+                        padding: ResponsiveHelper.r.paddingAll(18),
+                        child: Column(
+                          spacing: 10,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AppText(
+                              data: AppStrings.email.tr(),
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            AuthTextField(
+                              icon: AppAssets.email,
+                              controller: emailController,
+                              keyboardType: TextInputType.emailAddress,
+                              validator: (v) => Validator.validateEmail(v),
+                            ),
+                            AppText(
+                              data: AppStrings.password.tr(),
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            AuthTextField(
+                              icon: AppAssets.password,
+                              controller: passwordController,
+                              keyboardType: TextInputType.visiblePassword,
+                              validator: (v) => Validator.validatePassword(v),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                NavigationHelper.pushNamed(
+                                  context,
+                                  AppRoutes.forgot,
+                                );
+                              },
+                              child: AppText(data: AppStrings.forgot.tr()),
+                            ),
+                            AppButton(
+                              text: AppStrings.login.tr(),
+                              onTap: () {
+                                if (formKey.currentState!.validate()) {
+                                  context.read<AuthCubit>().login(
+                                    emailController.text,
+                                    passwordController.text,
+                                  );
+                                }
+                              },
+                            ),
+                            Gap(15),
+                            Center(
+                              child: CustomTextSpan(
+                                hint: AppStrings.dontHaveAccount.tr(),
+                                action: AppStrings.register.tr(),
+                                onTap: () => NavigationHelper.pushNamed(
+                                  context,
+                                  AppRoutes.register,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

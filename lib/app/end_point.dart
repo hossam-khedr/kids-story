@@ -1,11 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:kids_story_ai/core/utils/helpers/responsive_helper.dart';
-import 'package:kids_story_ai/core/utils/toast_service.dart';
-
-import 'config/routes/app_routes.dart';
-import 'config/routes/route_generator.dart';
-import 'core/theme/app_theme.dart';
+import 'package:kids_story_ai/app/index.dart';
 
 class KidsStory extends StatelessWidget {
   const KidsStory({super.key});

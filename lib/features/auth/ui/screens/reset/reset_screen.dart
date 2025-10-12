@@ -1,18 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:kids_story_ai/app/index.dart' hide State;
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:gap/gap.dart';
-import 'package:kids_story_ai/config/routes/app_routes.dart';
-import 'package:kids_story_ai/core/utils/helpers/navigation_helper.dart';
-import 'package:kids_story_ai/core/utils/validators.dart';
-
-import '../../../../../core/constants/app_assets.dart';
-import '../../../../../core/constants/app_strings.dart';
-import '../../../../../core/utils/helpers/responsive_helper.dart';
-import '../../wdgets/auth_button.dart';
-import '../../../../../core/widgets/app_text.dart';
-import '../../wdgets/auth_text_field.dart';
-import '../../wdgets/setup_auth_screens.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});

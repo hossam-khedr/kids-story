@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:kids_story_ai/app/index.dart';
 
 
 class DioHelper {
@@ -9,7 +10,7 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'http://localhost:8080/',
+        baseUrl: ApiConstants.baseUrl,
         receiveDataWhenStatusError: true,
         connectTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
@@ -71,7 +72,7 @@ class DioHelper {
   }
 
   // POST Request
-  static Future<Response> postData({
+ static  Future<Response> postData({
     required String url,
     Map<String, dynamic>? data,
     Map<String, dynamic>? query,
