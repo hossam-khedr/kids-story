@@ -27,8 +27,11 @@ class _LoginScreenState extends State<LoginScreen> {
           }
           if (state.isLoginSuccess) {
             NavigationHelper.pop(context);
-            ToastService.success(context, 'Login Successfully');
-            // NavigationHelper.pushNamedAndRemoveUntil(context, AppRoutes.login);
+
+            NavigationHelper.pushNamedAndRemoveUntil(
+              context,
+              AppRoutes.layoutManager,
+            );
           }
         },
         child: SetupAuthScreens(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kids_story_ai/app/di.dart';
 import 'package:kids_story_ai/app/index.dart';
+import 'package:kids_story_ai/layout_manager/layout_manager_screen.dart';
 
 class RouteGenerator {
   static Route? generateRoute(RouteSettings settings) {
@@ -27,6 +28,8 @@ class RouteGenerator {
         return _buildRouteWithAnimation(ForgotScreen());
       case AppRoutes.reset:
         return _buildRouteWithAnimation(ResetPasswordScreen());
+      case AppRoutes.layoutManager:
+        return _buildRouteWithAnimation(LayoutManagerScreen());
     }
     return null;
   }
