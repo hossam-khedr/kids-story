@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:kids_story_ai/app/index.dart';
+import 'package:kids_story_ai/app/index.dart' hide State;
 
-class KidsStory extends StatelessWidget {
+
+class KidsStory extends StatefulWidget {
   const KidsStory({super.key});
 
+  @override
+  State<KidsStory> createState() => _KidsStoryState();
+}
+
+class _KidsStoryState extends State<KidsStory> {
+  final userToken = CacheHelper.getString(ApiConstants.tokenKey);
   @override
   Widget build(BuildContext context) {
     ResponsiveHelper.instance.init(context);
@@ -15,7 +22,7 @@ class KidsStory extends StatelessWidget {
       localizationsDelegates: [...context.localizationDelegates],
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      initialRoute: AppRoutes.login,
+      initialRoute:userToken!=null? AppRoutes.layoutManager:AppRoutes.login,
 
       onGenerateRoute: RouteGenerator.generateRoute,
     );

@@ -12,10 +12,7 @@ class RouteGenerator {
     switch (routeName) {
       case AppRoutes.login:
         return _buildRoute(
-          BlocProvider(
-              child: LoginScreen(),
-              create: (_) => getIt<AuthCubit>(),
-          ),
+          BlocProvider(child: LoginScreen(), create: (_) => getIt<AuthCubit>()),
         );
       case AppRoutes.register:
         return _buildRouteWithAnimation(
@@ -25,9 +22,19 @@ class RouteGenerator {
           ),
         );
       case AppRoutes.forgot:
-        return _buildRouteWithAnimation(ForgotScreen());
+        return _buildRouteWithAnimation(
+          BlocProvider(
+            child: ForgotScreen(),
+            create: (_) => getIt<AuthCubit>(),
+          ),
+        );
       case AppRoutes.reset:
-        return _buildRouteWithAnimation(ResetPasswordScreen());
+        return _buildRouteWithAnimation(
+          BlocProvider(
+            child: ResetPasswordScreen(),
+            create: (_) => getIt<AuthCubit>(),
+          ),
+        );
       case AppRoutes.layoutManager:
         return _buildRouteWithAnimation(LayoutManagerScreen());
     }

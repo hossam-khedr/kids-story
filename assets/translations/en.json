@@ -19,5 +19,11 @@
   "reset": "Reset",
   "code": "Code",
   "new_password": "New Password",
-  "register_success_message": "The account has been created successfully. Log in to continue."
+  "register_success_message": "The account has been created successfully. Log in to continue.",
+  "copy_code": "Copy code",
+  "password_changed_successfully": "Password changed successfully",
+  "home": "Home",
+  "library": "Library",
+  "create": "Create",
+  "profile": "Profile"
 }

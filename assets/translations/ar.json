@@ -19,5 +19,11 @@
   "reset": "اعادة تعيين",
   "code": "الرمز",
   "new_password": "كلمة المرور الجديدة",
-  "register_success_message": "تم انشاء الحساب بنجاح قم بتسجيل الدخول لتتمكن من المتابعه"
+  "register_success_message": "تم انشاء الحساب بنجاح قم بتسجيل الدخول لتتمكن من المتابعه",
+  "copy_code": "نسخ الرمز",
+  "password_changed_successfully": "تم تغيير كلمة المرور بنجاح",
+  "home": "الرئيسية",
+  "library": "المكتبه",
+  "create": "انشاء",
+  "profile": "حسابي"
 }

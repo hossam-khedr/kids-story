@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kids_story_ai/app/index.dart';
 
-
 class CustomBottomNavBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTabSelected;
@@ -15,10 +14,10 @@ class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tabs = [
-      {'text': 'Home', 'icon': Icons.home_filled},
-      {'text': 'Search', 'icon': Icons.book},
-      {'text': 'Library', 'icon': Icons.create_outlined},
-      {'text': 'Profile', 'icon': Icons.person},
+      {'text': AppStrings.home.tr(), 'icon': AppAssets.home},
+      {'text': AppStrings.library.tr(), 'icon': AppAssets.book},
+      {'text': AppStrings.create.tr(), 'icon': AppAssets.star},
+      {'text': AppStrings.profile.tr(), 'icon': AppAssets.profile},
     ];
 
     return SizedBox(
@@ -40,7 +39,7 @@ class CustomBottomNavBar extends StatelessWidget {
             return Expanded(
               child: TabBottom(
                 text: tab['text'] as String,
-                icon: tab['icon'] as IconData,
+                icon: tab['icon'] as String,
                 isSelected: currentIndex == index,
                 onTap: () => onTabSelected(index),
               ),
@@ -55,7 +54,7 @@ class CustomBottomNavBar extends StatelessWidget {
 class TabBottom extends StatelessWidget {
   final bool isSelected;
   final String text;
-  final IconData icon;
+  final String icon;
   final void Function()? onTap;
 
   const TabBottom({
@@ -72,7 +71,10 @@ class TabBottom extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       onTap: onTap,
       child: Padding(
-        padding: ResponsiveHelper.r.paddingSymmetric(vertical: 10,horizontal: 12),
+        padding: ResponsiveHelper.r.paddingSymmetric(
+          vertical: 10,
+          horizontal: 12,
+        ),
         child: Container(
           padding: ResponsiveHelper.r.paddingAll(10),
           decoration: BoxDecoration(
@@ -82,16 +84,18 @@ class TabBottom extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
+              SvgPicture.asset(
                 icon,
                 color: isSelected ? Colors.white : AppColors.primary,
               ),
               Text(
-                 text,
+                text,
                 style: TextStyle(
                   color: isSelected ? Colors.white : AppColors.primary,
+                  fontSize: isSelected
+                      ? ResponsiveHelper.r.font(14)
+                      : ResponsiveHelper.r.font(12),
                 ),
-
               ),
             ],
           ),
@@ -100,4 +104,3 @@ class TabBottom extends StatelessWidget {
     );
   }
 }
-

@@ -26,4 +26,29 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     );
     return response;
   }
+
+  @override
+  Future<dynamic> forgotPassword(String email)async {
+    final  response =await DioHelper.postData(
+      url: ApiConstants.forgotPasswordEndPoint,
+      data: {
+        "email":email,
+
+      },
+    );
+    return response;
+  }
+
+  @override
+  Future<dynamic> resetPassword(String email, String code, String newPassword)async {
+    final response = await DioHelper.postData(
+      url: ApiConstants.resetPasswordEndPoint,
+      data: {
+        "email":email,
+        "reset_token":code,
+        "new_password":newPassword
+      },
+    );
+    return response;
+  }
 }

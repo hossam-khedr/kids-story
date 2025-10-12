@@ -20,4 +20,10 @@ abstract class AppStrings{
   static const String code = 'code';
   static const String newPassword = 'new_password';
   static const String registerSuccessMessage = 'register_success_message';
+  static const String copyCode = 'copy_code';
+  static const String changePasswordMessage = 'password_changed_successfully';
+  static const String library = 'library';
+  static const String home = 'home';
+  static const String create = 'create';
+  static const String profile = 'profile';
 }
