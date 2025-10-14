@@ -2,6 +2,8 @@ import 'package:get_it/get_it.dart';
 import 'package:kids_story_ai/app/index.dart';
 
 
+
+
 final getIt = GetIt.instance;
 
 Future<void> initApp() async {
@@ -14,4 +16,16 @@ Future<void> initAuthModule() async {
     () => AuthRepoImpl(authRemoteDataSource: getIt(), networkInfo: getIt()),
   );
   getIt.registerFactory(() => AuthCubit(authRepo: getIt()));
+}
+
+Future<void> initLayout() async {
+  getIt.registerFactory<LayoutCubit>(() => LayoutCubit());
+}
+
+Future<void> initHomeModule() async {
+  getIt.registerFactory<HomeRemoteDataSource>(() => HomeRemoteDataSourceImpl());
+  getIt.registerFactory<HomeRepo>(
+    () => HomeRepoImpl(homeRemoteDataSource: getIt(), networkInfo: getIt()),
+  );
+  getIt.registerFactory(() => HomeCubit(homeRepo: getIt()));
 }

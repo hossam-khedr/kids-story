@@ -92,6 +92,7 @@ class TabBottom extends StatelessWidget {
                 text,
                 style: TextStyle(
                   color: isSelected ? Colors.white : AppColors.primary,
+                  fontWeight: FontWeight.bold,
                   fontSize: isSelected
                       ? ResponsiveHelper.r.font(14)
                       : ResponsiveHelper.r.font(12),

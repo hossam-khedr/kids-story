@@ -25,5 +25,10 @@
   "home": "Home",
   "library": "Library",
   "create": "Create",
-  "profile": "Profile"
+  "profile": "Profile",
+  "hello": "Welcome",
+  "home_message": "Listen to a wonderful story today!",
+  "create_story": "Create Your One Story",
+  "categories": "Categories",
+  "all": "All"
 }

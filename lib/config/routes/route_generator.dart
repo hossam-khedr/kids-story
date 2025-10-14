@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kids_story_ai/app/di.dart';
 import 'package:kids_story_ai/app/index.dart';
+import 'package:kids_story_ai/features/home/ui/logic/controller/home_cubit.dart';
 import 'package:kids_story_ai/layout_manager/layout_manager_screen.dart';
+import 'package:kids_story_ai/layout_manager/logic/layout_cubit.dart';
 
 class RouteGenerator {
   static Route? generateRoute(RouteSettings settings) {
@@ -36,7 +38,9 @@ class RouteGenerator {
           ),
         );
       case AppRoutes.layoutManager:
-        return _buildRouteWithAnimation(LayoutManagerScreen());
+        return _buildRouteWithAnimation(
+          LayoutManagerScreen(),
+        );
     }
     return null;
   }

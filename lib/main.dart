@@ -9,6 +9,8 @@ void main() async {
   CacheHelper.initCacheHelper();
   DioHelper.init();
   await initApp();
+  await initLayout();
+  await initHomeModule();
   await initAuthModule();
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(

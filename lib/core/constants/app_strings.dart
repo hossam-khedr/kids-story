@@ -26,4 +26,9 @@ abstract class AppStrings{
   static const String home = 'home';
   static const String create = 'create';
   static const String profile = 'profile';
+  static const String hello = 'hello';
+  static const String homeMessage = 'home_message';
+  static const String createStory = 'create_story';
+  static const String categories = 'categories';
+  static const String all = 'all';
 }

@@ -23,7 +23,12 @@
   "copy_code": "نسخ الرمز",
   "password_changed_successfully": "تم تغيير كلمة المرور بنجاح",
   "home": "الرئيسية",
-  "library": "المكتبه",
+  "library": "مكتبتي",
   "create": "انشاء",
-  "profile": "حسابي"
+  "profile": "الملف",
+  "hello": "مرحبا",
+  "home_message": "استمع الي قصه رائعه اليوم!",
+  "create_story": "انشاء قصتك الخاصه",
+  "categories": "فئات",
+  "all": "الجميع"
 }
