@@ -1,8 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:kids_story_ai/app/index.dart';
+import 'package:kids_story_ai/features/story_details/data/data_source/remote/story_remote_data_source.dart';
+import 'package:kids_story_ai/features/story_details/ui/logic/controller/cubit.dart';
+import 'package:kids_story_ai/features/story_details/ui/logic/story_details_repo.dart';
 
-
-
+import '../features/story_details/data/data_source/remote/story_remote_data_source_impl.dart';
+import '../features/story_details/data/story_details_repo_impl.dart';
 
 final getIt = GetIt.instance;
 
@@ -28,4 +31,17 @@ Future<void> initHomeModule() async {
     () => HomeRepoImpl(homeRemoteDataSource: getIt(), networkInfo: getIt()),
   );
   getIt.registerFactory(() => HomeCubit(homeRepo: getIt()));
+}
+
+Future<void> initStoryDetailsModule() async {
+  getIt.registerFactory<StoryDetailsRemoteDataSource>(
+    () => StoryDetailsRemoteDataSourceImpl(),
+  );
+  getIt.registerFactory<StoryDetailsRepo>(
+    () => StoryDetailsRepoImpl(
+      storyRemoteDataSource: getIt(),
+      networkInfo: getIt(),
+    ),
+  );
+  getIt.registerFactory(() => StoryDetailsCubit(storyDetailsRepo: getIt()));
 }

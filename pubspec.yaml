@@ -26,6 +26,7 @@ dependencies:
   get_it: 
   shared_preferences: ^2.5.3
   internet_connection_checker: ^3.0.1
+  flutter_tts: ^4.2.3
 
 
 dev_dependencies:
