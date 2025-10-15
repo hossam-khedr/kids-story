@@ -4,4 +4,5 @@ abstract class AppRoutes {
   static const String forgot = '/forgot';
   static const String reset = '/reset';
   static const String layoutManager = '/layoutManager';
+  static const String storyDetails = '/storyDetails';
 }

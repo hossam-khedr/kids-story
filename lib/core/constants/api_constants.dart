@@ -5,7 +5,7 @@ abstract class ApiConstants{
   static const String forgotPasswordEndPoint = 'forgot';
   static const String resetPasswordEndPoint = 'reset';
   static const String categoryEndPoint = 'categories';
-  static const String storiesEndPoint = 'stories';
+  static const String storiesEndPoint = 'stories/category';
 
   static const String tokenKey = 'token';
 }

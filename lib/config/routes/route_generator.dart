@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kids_story_ai/app/di.dart';
 import 'package:kids_story_ai/app/index.dart';
 import 'package:kids_story_ai/features/home/ui/logic/controller/home_cubit.dart';
+import 'package:kids_story_ai/features/story_details/ui/story_details_screen.dart';
 import 'package:kids_story_ai/layout_manager/layout_manager_screen.dart';
 import 'package:kids_story_ai/layout_manager/logic/layout_cubit.dart';
 
@@ -40,6 +41,12 @@ class RouteGenerator {
       case AppRoutes.layoutManager:
         return _buildRouteWithAnimation(
           LayoutManagerScreen(),
+        );
+
+      case AppRoutes.storyDetails:
+        final storyId = args as int;
+        return _buildRouteWithAnimation(
+          StoryDetailsScreen(storyId: storyId,),
         );
     }
     return null;
