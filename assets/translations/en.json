@@ -15,7 +15,7 @@
   "back_to_login": "Back to Sing in",
   "send_code": "Send Code",
   "reset_password": "Reset Password",
-  "reset_password_hint": "Enter the required data and the copied code to be able to change the password",
+  "reset_password_hint": "Enter the required data to be able to change the password",
   "reset": "Reset",
   "code": "Code",
   "new_password": "New Password",
@@ -30,5 +30,8 @@
   "home_message": "Listen to a wonderful story today!",
   "create_story": "Create Your One Story",
   "categories": "Categories",
-  "all": "All"
+  "all": "All",
+  "verify": "Verify",
+  "resend_code": "Resend Code",
+  "otp_hint": "Enter the code that was sent to you now"
 }

@@ -62,12 +62,27 @@ class AuthRepoImpl implements AuthRepo {
       return Left(failuer);
     }
   }
-
   @override
-  Future<Either<Failure, void>> resetPassword(String email, String code, String newPassword)async {
+  Future<Either<Failure, String>> verifyOTP(String email,String code)async {
     try{
       if (await networkInfo.isConnected) {
-        await authRemoteDataSource.resetPassword(email,code,newPassword);
+        final response =   await authRemoteDataSource.verifyOTP(email, code);
+        final data = response.data['message'] as String;
+        return  Right(data);
+      }else{
+        return Left(NetworkFailure('No internet connection'));
+      }
+    }catch(e){
+      final failuer = ErrorHandler.handle(e);
+      return Left(failuer);
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> resetPassword(String email,  String newPassword)async {
+    try{
+      if (await networkInfo.isConnected) {
+        await authRemoteDataSource.resetPassword(email,newPassword);
         return const Right(null);
       }else{
         return Left(NetworkFailure('No internet connection'));

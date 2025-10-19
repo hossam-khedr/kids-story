@@ -97,7 +97,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               validator: (v) => Validator.validatePassword(v),
                             ),
                             Gap(15),
-                            AppButton(
+                            AuthButton(
                               text: AppStrings.register.tr(),
                               onTap: () {
                                 if (formKey.currentState!.validate()) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kids_story_ai/app/di.dart';
 import 'package:kids_story_ai/app/index.dart';
+import 'package:kids_story_ai/features/auth/ui/screens/otp/otp_screen.dart';
 import 'package:kids_story_ai/features/home/ui/logic/controller/home_cubit.dart';
 import 'package:kids_story_ai/features/story_details/ui/logic/controller/cubit.dart';
 import 'package:kids_story_ai/features/story_details/ui/story_details_screen.dart';
@@ -29,6 +30,14 @@ class RouteGenerator {
         return _buildRouteWithAnimation(
           BlocProvider(
             child: ForgotScreen(),
+            create: (_) => getIt<AuthCubit>(),
+          ),
+        );
+      case AppRoutes.otp:
+        final email = args as String;
+        return _buildRouteWithAnimation(
+          BlocProvider(
+            child: OtpScreen(email: email),
             create: (_) => getIt<AuthCubit>(),
           ),
         );

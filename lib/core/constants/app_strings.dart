@@ -31,4 +31,7 @@ abstract class AppStrings{
   static const String createStory = 'create_story';
   static const String categories = 'categories';
   static const String all = 'all';
+  static const String verify = 'verify';
+  static const String resendCode = 'resend_code';
+  static const String otpHint = 'otp_hint';
 }

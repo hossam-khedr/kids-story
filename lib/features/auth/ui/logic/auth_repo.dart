@@ -5,5 +5,6 @@ abstract class AuthRepo{
   Future<Either<Failure,void>>register(String name,String email,String password);
   Future<Either<Failure,void>>login(String email,String password);
   Future<Either<Failure,ForgotPasswordResponse>>forgotPassword(String email,);
-  Future<Either<Failure,void>>resetPassword(String email, String code, String newPassword);
+  Future<Either<Failure, String>> verifyOTP(String email,String code);
+  Future<Either<Failure,void>>resetPassword(String email,  String newPassword);
 }

@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 
-
 enum ToastType { success, error, warning, info }
 
 class ToastService {
   static OverlayEntry? _currentToast;
 
-
   static void show(
-      BuildContext context, {
-        required String message,
-        required ToastType type,
-        Duration duration = const Duration(seconds: 10),
-        String? title,
-      }) {
-
+    BuildContext context, {
+    required String message,
+    required ToastType type,
+    int? duration,
+    String? title,
+  }) {
     _currentToast?.remove();
 
     final overlay = Overlay.of(context);
@@ -23,6 +20,7 @@ class ToastService {
         message: message,
         type: type,
         title: title,
+        duration: duration,
         onDismiss: () {
           _currentToast?.remove();
           _currentToast = null;
@@ -33,8 +31,7 @@ class ToastService {
     _currentToast = overlayEntry;
     overlay.insert(overlayEntry);
 
-
-    Future.delayed(duration, () {
+    Future.delayed(Duration(seconds: duration ?? 10), () {
       overlayEntry.remove();
       if (_currentToast == overlayEntry) {
         _currentToast = null;
@@ -42,21 +39,64 @@ class ToastService {
     });
   }
 
-
-  static void success(BuildContext context, String message, {String? title}) {
-    show(context, message: message, type: ToastType.success, title: title);
+  static void success(
+    BuildContext context,
+    String message, {
+    String? title,
+    int? duration,
+  }) {
+    show(
+      context,
+      message: message,
+      type: ToastType.success,
+      title: title,
+      duration: duration,
+    );
   }
 
-  static void error(BuildContext context, String message, {String? title}) {
-    show(context, message: message, type: ToastType.error, title: title);
+  static void error(
+    BuildContext context,
+    String message, {
+    String? title,
+    int? duration,
+  }) {
+    show(
+      context,
+      message: message,
+      type: ToastType.error,
+      title: title,
+      duration: duration,
+    );
   }
 
-  static void warning(BuildContext context, String message, {String? title}) {
-    show(context, message: message, type: ToastType.warning, title: title);
+  static void warning(
+    BuildContext context,
+    String message, {
+    String? title,
+    int? duration,
+  }) {
+    show(
+      context,
+      message: message,
+      type: ToastType.warning,
+      title: title,
+      duration: duration,
+    );
   }
 
-  static void info(BuildContext context, String message, {String? title}) {
-    show(context, message: message, type: ToastType.info, title: title);
+  static void info(
+    BuildContext context,
+    String message, {
+    String? title,
+    int? duration,
+  }) {
+    show(
+      context,
+      message: message,
+      type: ToastType.info,
+      title: title,
+      duration: duration,
+    );
   }
 }
 
@@ -64,6 +104,7 @@ class _ToastWidget extends StatefulWidget {
   final String message;
   final ToastType type;
   final String? title;
+  final int? duration;
   final VoidCallback onDismiss;
 
   const _ToastWidget({
@@ -71,6 +112,7 @@ class _ToastWidget extends StatefulWidget {
     required this.type,
     required this.onDismiss,
     this.title,
+    this.duration,
   });
 
   @override
@@ -100,14 +142,12 @@ class _ToastWidgetState extends State<_ToastWidget>
     _slideAnimation = Tween<Offset>(
       begin: const Offset(0, -1),
       end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeOutCubic,
-    ));
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic));
 
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
-    );
+    _fadeAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeIn));
 
     _controller.forward();
   }
@@ -185,11 +225,7 @@ class _ToastWidgetState extends State<_ToastWidget>
                         color: config.color.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Icon(
-                        config.icon,
-                        color: config.color,
-                        size: 28,
-                      ),
+                      child: Icon(config.icon, color: config.color, size: 28),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -216,16 +252,25 @@ class _ToastWidgetState extends State<_ToastWidget>
                         ],
                       ),
                     ),
-                    IconButton(
-                      onPressed: () {
-                        _controller.reverse().then((_) {
-                          widget.onDismiss();
-                        });
-                      },
-                      icon: Icon(
-                        Icons.close,
-                        color: Colors.grey[400],
-                        size: 20,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: config.color,
+                        ),
+                        child: IconButton(
+                          onPressed: () {
+                            _controller.reverse().then((_) {
+                              widget.onDismiss();
+                            });
+                          },
+                          icon: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -244,9 +289,5 @@ class ToastConfig {
   final IconData icon;
   final String title;
 
-  ToastConfig({
-    required this.color,
-    required this.icon,
-    required this.title,
-  });
+  ToastConfig({required this.color, required this.icon, required this.title});
 }

@@ -26,22 +26,16 @@ class _ForgotScreenState extends State<ForgotScreen> {
             ToastService.error(context, state.errorMessage);
           }
           if (state.isForgotSuccess) {
-            DialogService.success(
+            ToastService.success(
               context,
-              message: state.forgotPasswordResponse!.code,
+              state.forgotPasswordResponse!.code,
               title: state.forgotPasswordResponse!.message,
-              buttonText: AppStrings.copyCode.tr(),
-              onConfirm: () {
-                Clipboard.setData(
-                  ClipboardData(text: state.forgotPasswordResponse!.code),
-                ).then((v) {
-                  if (!mounted) return;
-                  NavigationHelper.pushReplacementNamed(
-                    context,
-                    AppRoutes.reset,
-                  );
-                });
-              },
+              duration: 30,
+            );
+            NavigationHelper.pushReplacementNamed(
+              context,
+              AppRoutes.otp,
+              arguments: emailController.text,
             );
           }
         },
@@ -87,7 +81,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
                               validator: (v) => Validator.validateEmail(v),
                             ),
                             Gap(10),
-                            AppButton(
+                            AuthButton(
                               text: AppStrings.sendCode.tr(),
                               onTap: () {
                                 if (formKey.currentState!.validate()) {

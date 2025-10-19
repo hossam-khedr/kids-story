@@ -49,9 +49,27 @@ class AuthCubit extends Cubit<AuthStates> {
     );
   }
 
-  Future<void> reset(String email, String code, String newPassword) async {
+  Future<void> verifyOTP(String email, String code) async {
+    emit(state.copyWith(authStatus: AuthStatus.otpLading));
+    (await authRepo.verifyOTP(email, code)).fold(
+      (failuer) => emit(
+        state.copyWith(
+          authStatus: AuthStatus.otpError,
+          errorMessage: failuer.message,
+        ),
+      ),
+      (message) => emit(
+        state.copyWith(
+          authStatus: AuthStatus.otpSuccess,
+          otpSuccessMessage: message,
+        ),
+      ),
+    );
+  }
+
+  Future<void> reset(String email,  String newPassword) async {
     emit(state.copyWith(authStatus: AuthStatus.resetLading));
-    (await authRepo.resetPassword(email, code, newPassword)).fold(
+    (await authRepo.resetPassword(email,  newPassword)).fold(
       (failuer) => emit(
         state.copyWith(
           authStatus: AuthStatus.resetError,

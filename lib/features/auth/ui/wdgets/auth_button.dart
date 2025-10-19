@@ -3,10 +3,10 @@ import 'package:kids_story_ai/core/constants/app_colors.dart';
 import 'package:kids_story_ai/core/utils/helpers/responsive_helper.dart';
 import 'package:kids_story_ai/core/widgets/app_text.dart';
 
-class AppButton extends StatelessWidget {
+class AuthButton extends StatelessWidget {
   final String text;
   final void Function()? onTap;
-  const AppButton({super.key, required this.text, this.onTap});
+  const AuthButton({super.key, required this.text, this.onTap});
 
   @override
   Widget build(BuildContext context) {

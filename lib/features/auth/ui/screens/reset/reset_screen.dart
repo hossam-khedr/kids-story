@@ -11,7 +11,7 @@ class ResetPasswordScreen extends StatefulWidget {
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final codeController = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -75,19 +75,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                               validator: (v) => Validator.validateEmail(v),
                               keyboardType: TextInputType.emailAddress,
                             ),
-                            AppText(
-                              data: AppStrings.code.tr(),
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                            AuthTextField(
-                              icon: AppAssets.code,
-                              controller: codeController,
-                              validator: (v) => Validator.validateRequired(
-                                v,
-                                codeController.text,
-                              ),
-                              keyboardType: TextInputType.text,
-                            ),
+
                             AppText(
                               data: AppStrings.newPassword.tr(),
                               style: Theme.of(context).textTheme.titleMedium,
@@ -99,13 +87,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                               keyboardType: TextInputType.visiblePassword,
                             ),
                             Gap(15),
-                            AppButton(
+                            AuthButton(
                               text: AppStrings.reset.tr(),
                               onTap: () {
                                 if (formKey.currentState!.validate()) {
                                   context.read<AuthCubit>().reset(
                                     emailController.text,
-                                    codeController.text,
                                     passwordController.text,
                                   );
                                 }

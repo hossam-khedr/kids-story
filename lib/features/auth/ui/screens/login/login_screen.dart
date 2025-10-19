@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               },
                               child: AppText(data: AppStrings.forgot.tr()),
                             ),
-                            AppButton(
+                            AuthButton(
                               text: AppStrings.login.tr(),
                               onTap: () {
                                 if (formKey.currentState!.validate()) {

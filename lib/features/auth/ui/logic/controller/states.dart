@@ -14,17 +14,22 @@ enum AuthStatus {
   resetSuccess,
   resetError,
   resetLading,
+  otpSuccess,
+  otpError,
+  otpLading,
 }
 
 class AuthStates {
   final String errorMessage;
   final AuthStatus authStatus;
   final ForgotPasswordResponse? forgotPasswordResponse;
+  final String? otpSuccessMessage;
 
   AuthStates({
     this.errorMessage = '',
     this.authStatus = AuthStatus.init,
     this.forgotPasswordResponse,
+    this.otpSuccessMessage
   });
 
   bool get isRegisterLoading => authStatus == AuthStatus.registerLoading;
@@ -44,16 +49,21 @@ class AuthStates {
   bool get isResetError => authStatus == AuthStatus.resetError;
   bool get isResetLoading => authStatus == AuthStatus.resetLading;
   bool get isResetSuccess => authStatus == AuthStatus.resetSuccess;
+  bool get isOTPLading => authStatus == AuthStatus.otpLading;
+  bool get isOTPError => authStatus == AuthStatus.otpError;
+  bool get isOTPSuccess => authStatus == AuthStatus.otpSuccess;
 
   AuthStates copyWith({
     final String? errorMessage,
     final AuthStatus? authStatus,
     final ForgotPasswordResponse? forgotPasswordResponse,
+    final String? otpSuccessMessage,
   }) {
     return AuthStates(
       errorMessage: errorMessage ?? this.errorMessage,
       authStatus: authStatus ?? this.authStatus,
-      forgotPasswordResponse: forgotPasswordResponse ?? this.forgotPasswordResponse
+      forgotPasswordResponse: forgotPasswordResponse ?? this.forgotPasswordResponse,
+      otpSuccessMessage: otpSuccessMessage ?? this.otpSuccessMessage
     );
   }
 }
