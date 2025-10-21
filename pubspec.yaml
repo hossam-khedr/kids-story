@@ -1,62 +1,14 @@
 name: kids_story_ai
-description: "A new Flutter project."
-
-publish_to: 'none'
-
-
-version: 1.0.0+1
+description: Parent Flutter project that includes mobile, dashboard, and shared modules.
+publish_to: none
 
 environment:
   sdk: ^3.9.2
-
 
 dependencies:
   flutter:
     sdk: flutter
 
-  flutter_localization:
-  easy_localization:
-  cupertino_icons: ^1.0.8
-  dio: ^5.9.0
-  gap: ^3.0.1
-  flutter_bloc: ^9.1.1
-  dartz: ^0.10.1
-  flutter_svg: ^2.2.1
-  intl: ^0.20.2
-  get_it: 
-  shared_preferences: ^2.5.3
-  internet_connection_checker: ^3.0.1
-  flutter_tts: ^4.2.3
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-
-  flutter_lints: ^5.0.0
-
-
-flutter:
-
-
-
-  uses-material-design: true
-
-
-  assets:
-     - assets/translations/
-     - assets/svg/
-
-
-
-
-
-
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-

@@ -1,0 +1,37 @@
+abstract class AppStrings{
+  static const String welcome = 'welcome';
+  static const String singInToCon = 'sing_in_to_continuo';
+  static const String email = 'email';
+  static const String password = 'password';
+  static const String forgot = 'for_egot_password';
+  static const String login = 'login';
+  static const String register = 'register';
+  static const String dontHaveAccount = 'dont_have_account';
+  static const String alreadyHaveAccount = 'already_have_account';
+  static const String newAccount = 'create_new_account';
+  static const String registerHint = 'register_hint';
+  static const String name = 'name';
+  static const String forgotPasswordHint = 'forgot_hint';
+  static const String backToLogin = 'back_to_login';
+  static const String sendCode = 'send_code';
+  static const String resetPassword = 'reset_password';
+  static const String resetPasswordHint = 'reset_password_hint';
+  static const String reset = 'reset';
+  static const String code = 'code';
+  static const String newPassword = 'new_password';
+  static const String registerSuccessMessage = 'register_success_message';
+  static const String copyCode = 'copy_code';
+  static const String changePasswordMessage = 'password_changed_successfully';
+  static const String library = 'library';
+  static const String home = 'home';
+  static const String create = 'create';
+  static const String profile = 'profile';
+  static const String hello = 'hello';
+  static const String homeMessage = 'home_message';
+  static const String createStory = 'create_story';
+  static const String categories = 'categories';
+  static const String all = 'all';
+  static const String verify = 'verify';
+  static const String resendCode = 'resend_code';
+  static const String otpHint = 'otp_hint';
+}
