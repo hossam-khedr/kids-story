@@ -1,4 +1,4 @@
-import 'package:app_dashboard/featuers/categories/ui/logic/categories_repo.dart';
+import 'package:app_dashboard/data/repos/categories/categories_repo.dart';
 import 'package:app_dashboard/featuers/categories/ui/logic/controller/states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

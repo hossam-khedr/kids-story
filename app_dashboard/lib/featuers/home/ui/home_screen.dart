@@ -9,6 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/core/constants/app_colors.dart';
 import 'package:shared/utils/helpers/responsive_helper.dart';
 
+import '../../stories/ui/logic/cubit.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -16,7 +18,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context)=>getIt<CategoriesCubit>())
+        BlocProvider(create: (context)=>getIt<CategoriesCubit>()),
       ],
       child: Scaffold(
         body: Row(

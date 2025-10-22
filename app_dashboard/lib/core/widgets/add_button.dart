@@ -4,8 +4,9 @@ import 'package:shared/core/widgets/app_text.dart';
 import 'package:shared/utils/helpers/responsive_helper.dart';
 class AddButton extends StatelessWidget {
   final String text;
+  final Color? color;
   final void Function()? onTap;
-  const AddButton({super.key, required this.text, this.onTap, });
+  const AddButton({super.key, required this.text, this.onTap,  this.color, });
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class AddButton extends StatelessWidget {
       child: Container(
         padding: ResponsiveHelper.r.paddingSymmetric(vertical: 3,horizontal: 5),
         decoration: BoxDecoration(
-          color: AppColors.primary,
+          color:color?? AppColors.primary,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Center(

@@ -1,3 +1,5 @@
+import 'package:app_dashboard/core/app_routse.dart';
+import 'package:app_dashboard/featuers/categories/ui/screens/add_category_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/utils/helpers/responsive_helper.dart';
 
@@ -9,9 +11,10 @@ class EntryPoint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ResponsiveHelper.instance.init(context);
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      routes: AppRoutes.buildRoutes,
+      initialRoute: AppRoutes.home,
     );
   }
 }

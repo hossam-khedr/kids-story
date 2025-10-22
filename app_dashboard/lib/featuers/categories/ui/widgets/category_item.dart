@@ -5,8 +5,8 @@ import 'package:shared/core/widgets/app_text.dart';
 import 'package:shared/utils/helpers/responsive_helper.dart';
 import 'package:shared/utils/toast_service.dart';
 
-import 'logic/controller/cubit.dart';
-import 'logic/controller/states.dart';
+import '../logic/controller/cubit.dart';
+import '../logic/controller/states.dart';
 
 class CategoryItem extends StatelessWidget {
   final bool isSelected;

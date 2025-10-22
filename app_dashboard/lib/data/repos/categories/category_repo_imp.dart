@@ -4,8 +4,8 @@ import 'package:shared/core/errors/failuer.dart';
 import 'package:shared/core/network/network_info.dart';
 import 'package:shared/responses/category_response.dart';
 
-import '../ui/logic/categories_repo.dart';
-import 'data_source/categories_data_source.dart';
+import '../../data_source/remote/categories/categories_data_source.dart';
+import 'categories_repo.dart';
 
 class CategoriesRepoImpl implements CategoriesRepo {
   CategoriesDataSource categoriesDataSource;

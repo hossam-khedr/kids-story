@@ -7,6 +7,7 @@ void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init();
   await setUpCategories();
+  await setUpStories();
   runApp(const EntryPoint());
 }
 

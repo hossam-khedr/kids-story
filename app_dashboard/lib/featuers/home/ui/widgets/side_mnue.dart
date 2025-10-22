@@ -1,17 +1,14 @@
-import 'package:app_dashboard/app/di.dart';
+import 'package:app_dashboard/core/app_routse.dart';
 import 'package:app_dashboard/core/widgets/add_button.dart';
-import 'package:app_dashboard/featuers/categories/ui/category_list.dart';
-import 'package:app_dashboard/featuers/categories/ui/logic/controller/cubit.dart';
-import 'package:app_dashboard/featuers/categories/ui/logic/controller/states.dart';
+import 'package:app_dashboard/featuers/categories/ui/widgets/category_list.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+
 import 'package:shared/core/constants/app_colors.dart';
 import 'package:shared/core/widgets/app_text.dart';
+import 'package:shared/utils/helpers/navigation_helper.dart';
 import 'package:shared/utils/helpers/responsive_helper.dart';
-import 'package:shared/utils/toast_service.dart';
-
-import '../../../categories/ui/add_new_category.dart';
 
 class SideMenu extends StatefulWidget {
   const SideMenu({super.key});
@@ -66,22 +63,22 @@ class _SideMenuState extends State<SideMenu> {
                 ),
               ),
             ),
-            CategoryList(),
-            BlocProvider.value(
-              value: getIt<CategoriesCubit>(),
-              child: Padding(
-                padding: ResponsiveHelper.r.paddingAll(10),
-                child: AddButton(
-                  text: 'AddCategory',
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => AddNewCategory(),
-                    );
-                  },
-                ),
+            Expanded(child: CategoryList()),
+
+
+            Padding(
+              padding: ResponsiveHelper.r.paddingSymmetric(
+                horizontal: 10,
+                vertical: 5,
+              ),
+              child: AddButton(
+                text: 'AddCategory',
+                onTap: () {
+                  NavigationHelper.pushNamed(context, AppRoutes.addCategory);
+                },
               ),
             ),
+
           ],
         ),
       ),
