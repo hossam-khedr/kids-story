@@ -24,6 +24,7 @@ class CategoriesStates {
     this.categories = const [],
   });
 
+  bool get isInit => status == CategoriesStatus.init;
   bool get isCreateLoading => status == CategoriesStatus.createLoading;
 
   bool get isCreateError => status == CategoriesStatus.createError;

@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:shared/core/errors/error_handler.dart';
 import 'package:shared/core/errors/failuer.dart';
 import 'package:shared/core/network/network_info.dart';
+import 'package:shared/responses/story_response.dart';
 
 class StoriesRepoImpl implements StoriesRepo {
   final StoriesDataSource storiesDataSource;
@@ -28,6 +29,45 @@ class StoriesRepoImpl implements StoriesRepo {
           content: content,
           id: id,
         );
+        return const Right(null);
+      } else {
+        return Left(NetworkFailure('No internet connection'));
+      }
+    } catch (error) {
+      final failure = ErrorHandler.handle(error);
+      return Left(failure);
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<StoryResponse>>> getStoriesByCategory(
+    int categoryId,
+  ) async {
+    try {
+      if (await networkInfo.isConnected) {
+        final response = await storiesDataSource.getStoriesByCategory(
+          categoryId,
+        );
+        final data = response['data']['stories'] as List;
+
+        final stories = data.map((e) => StoryResponse.fromJson(e)).toList();
+
+        return Right(stories);
+      } else {
+        return Left(NetworkFailure('No internet connection'));
+      }
+    } catch (error) {
+      final failure = ErrorHandler.handle(error);
+      return Left(failure);
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteStory(int storyId) async {
+    try {
+      if (await networkInfo.isConnected) {
+        await storiesDataSource.deleteStory(storyId);
+
         return const Right(null);
       } else {
         return Left(NetworkFailure('No internet connection'));

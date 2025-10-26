@@ -14,12 +14,28 @@ class StoriesDataSourceImpl implements StoriesDataSource {
     final response = await DioHelper.postData(
       url: ApiConstants.storiesEndPoint,
       data: {
-        "title":title,
-        "image":image,
-        "descr":desc,
-        "content":content,
-        "category_id":id,
+        "title": title,
+        "image": image,
+        "descr": desc,
+        "content": content,
+        "category_id": id,
       },
+    );
+    return response;
+  }
+
+  @override
+  Future<dynamic> getStoriesByCategory(int categoryID) async {
+    final response = await DioHelper.getData(
+      url: '${ApiConstants.storiesByCategoryEndPoint}$categoryID',
+    );
+    return response.data;
+  }
+
+  @override
+  Future<dynamic> deleteStory(int storyID)async {
+    final response = await DioHelper.deleteData(
+      url: '${ApiConstants.storiesEndPoint}$storyID',
     );
     return response;
   }

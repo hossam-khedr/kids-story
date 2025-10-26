@@ -1,4 +1,5 @@
 import 'package:app_dashboard/app/di.dart';
+import 'package:app_dashboard/core/app_routse.dart';
 import 'package:app_dashboard/core/widgets/app_text_field.dart';
 import 'package:app_dashboard/core/widgets/back_button.dart';
 import 'package:app_dashboard/featuers/stories/ui/logic/cubit.dart';
@@ -33,16 +34,17 @@ class _AddStoryScreenState extends State<AddStoryScreen> {
       body: SingleChildScrollView(
         child: BlocListener<StoriesCubit, StoriesStates>(
           listener: (context, state) {
-            if (state is CreateStoryLoading) {
+            if (state.isCreateLoading) {
               DialogService.showLoading(context);
             }
-            if (state is CreateStoryError) {
+            if (state.isCreateError) {
               NavigationHelper.pop(context);
               ToastService.error(context, state.errorMessage);
             }
-            if (state is CreateStorySuccess) {
+            if (state.isCreateSuccess) {
               NavigationHelper.pop(context);
               ToastService.success(context, 'Story Created Successfully');
+              NavigationHelper.pushNamedAndRemoveUntil(context, AppRoutes.home);
             }
           },
           child: Card(
@@ -136,7 +138,21 @@ class _AddStoryScreenState extends State<AddStoryScreen> {
                         id: categoryId,
                       );
                     },
-                    child: AppText(data: 'Create Story'),
+                    child: Container(
+                      padding: ResponsiveHelper.r.paddingAll(5),
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: AppText(
+                        data: 'Create Story',
+                        style: TextStyle(
+                          fontSize: ResponsiveHelper.r.font(14),
+                          color: AppColors.whit,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),

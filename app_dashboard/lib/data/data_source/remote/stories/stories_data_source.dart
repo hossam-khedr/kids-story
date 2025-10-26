@@ -6,4 +6,8 @@ abstract class StoriesDataSource {
     required String content,
     required int id,
   });
+
+
+  Future<dynamic>getStoriesByCategory(int categoryID);
+  Future<dynamic>deleteStory(int storyID);
 }

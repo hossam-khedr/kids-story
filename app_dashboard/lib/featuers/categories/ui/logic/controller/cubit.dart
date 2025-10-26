@@ -23,7 +23,7 @@ class CategoriesCubit extends Cubit<CategoriesStates> {
       },
       (success)async {
         emit(state.copyWith(status: CategoriesStatus.createSuccess));
-        await fitchCategories();
+
       },
     );
 

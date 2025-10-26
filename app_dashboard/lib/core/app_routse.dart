@@ -1,4 +1,5 @@
 import 'package:app_dashboard/app/di.dart';
+import 'package:app_dashboard/featuers/categories/ui/logic/controller/cubit.dart';
 import 'package:app_dashboard/featuers/categories/ui/screens/add_category_screen.dart';
 import 'package:app_dashboard/featuers/home/ui/home_screen.dart';
 import 'package:app_dashboard/featuers/stories/ui/logic/cubit.dart';
@@ -12,7 +13,10 @@ abstract class AppRoutes {
   static const String addStory = '/addStory';
 
   static Map<String, Widget Function(BuildContext context)> buildRoutes = {
-    home: (context) => const HomeScreen(),
+    home: (context) =>  MultiBlocProvider(providers: [
+      BlocProvider(create: (c)=>getIt<CategoriesCubit>()),
+      BlocProvider(create: (c)=>getIt<StoriesCubit>()),
+    ],child: HomeScreen(),),
     addCategory: (context) => const AddCategoryScreen(),
     addStory: (context) => BlocProvider(
       child: AddStoryScreen(),

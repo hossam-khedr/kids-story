@@ -1,3 +1,4 @@
+import 'package:app_dashboard/featuers/stories/ui/logic/cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -24,9 +25,16 @@ class _CategoryListState extends State<CategoryList> {
   int? selectedIndex;
 
   @override
+  void initState() {
+    super.initState();
+    context.read<CategoriesCubit>().fitchCategories();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: getIt<CategoriesCubit>()..fitchCategories(),
+      value: BlocProvider.of<CategoriesCubit>(context),
       child: BlocBuilder<CategoriesCubit, CategoriesStates>(
         builder: (context, state) {
           if (state.isGetLoading) {
@@ -35,7 +43,7 @@ class _CategoryListState extends State<CategoryList> {
           if (state.isGetError) {
             return Center(child: AppText(data: state.errorMessage));
           }
-          if (state.isGetSuccess) {
+          if (state.isGetSuccess|| state.isDeleteLoading || state.isDeleteError) {
             if (state.categories.isEmpty) {
               return Center(child: AppText(data: 'Categories Empty'));
             }
@@ -60,29 +68,34 @@ class _CategoryListState extends State<CategoryList> {
                           onTap: () {
                             setState(() {
                               selectedIndex = index;
+
                             });
+                            context.read<StoriesCubit>().getStoryByCategory(
+                              id: state.categories[index].id,
+                            );
                           },
                         );
                       },
                     ),
                   ),
-                  selectedIndex==null?SizedBox.shrink():  Padding(
-                    padding: ResponsiveHelper.r.paddingSymmetric(
-                      //horizontal: 10,
-                      vertical: 5,
-                    ),
-                    child: AddButton(
-                      color: AppColors.secondary,
-                      text: 'AddNewStory',
-                      onTap: () => NavigationHelper.pushNamed(
-                        context,
-                        AppRoutes.addStory,
-                        arguments: state.categories[selectedIndex??0].id
-
-                      ),
-                    ),
-                  ),
-
+                  selectedIndex == null
+                      ? SizedBox.shrink()
+                      : Padding(
+                          padding: ResponsiveHelper.r.paddingSymmetric(
+                            //horizontal: 10,
+                            vertical: 5,
+                          ),
+                          child: AddButton(
+                            color: AppColors.secondary,
+                            text: 'AddNewStory',
+                            onTap: () => NavigationHelper.pushNamed(
+                              context,
+                              AppRoutes.addStory,
+                              arguments:
+                                  state.categories[selectedIndex ?? 0].id,
+                            ),
+                          ),
+                        ),
                 ],
               ),
             );

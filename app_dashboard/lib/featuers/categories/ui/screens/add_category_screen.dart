@@ -1,3 +1,4 @@
+import 'package:app_dashboard/core/app_routse.dart';
 import 'package:app_dashboard/core/widgets/app_text_field.dart';
 import 'package:app_dashboard/core/widgets/back_button.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
             }
             if (state.isCreateSuccess) {
               ToastService.success(context, 'Category Created Successfully');
+              NavigationHelper.pushNamedAndRemoveUntil(context, AppRoutes.home);
             }
           },
           builder: (context, state) {
