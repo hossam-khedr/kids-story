@@ -7,6 +7,7 @@ abstract class ApiConstants{
   static const String resetPasswordEndPoint = 'auth/resete';
   static const String categoryEndPoint = 'categories/';
   static const String storiesEndPoint = 'stories/';
+  static const String storiesByCategoryEndPoint = 'stories/category/';
   static const String getStoryEndPoint = 'stories';
 
   static const String tokenKey = 'token';
