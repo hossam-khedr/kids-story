@@ -6,7 +6,7 @@ abstract class ApiConstants{
   static const String verifyOtpEndPoint = 'auth/verify_otp';
   static const String resetPasswordEndPoint = 'auth/resete';
   static const String categoryEndPoint = 'categories/';
-  static const String storiesEndPoint = 'stories/category';
+  static const String storiesEndPoint = 'stories/';
   static const String getStoryEndPoint = 'stories';
 
   static const String tokenKey = 'token';
