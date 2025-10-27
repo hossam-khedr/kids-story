@@ -1,0 +1,64 @@
+name: app_mobile
+description: "kids story mobile app"
+
+publish_to: 'none'
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared:
+    path: ../shared
+
+
+  cupertino_icons: ^1.0.8
+
+  get_it:
+  gap: ^3.0.1
+  flutter_bloc: ^9.1.1
+  dartz: ^0.10.1
+  flutter_svg: ^2.2.1
+  intl: ^0.20.2
+  flutter_localization:
+  easy_localization:
+
+  flutter_tts: ^4.2.3
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^5.0.0
+
+
+flutter:
+
+
+
+  uses-material-design: true
+
+
+  assets:
+     - assets/translations/
+     - assets/svg/
+
+
+
+
+
+
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+
