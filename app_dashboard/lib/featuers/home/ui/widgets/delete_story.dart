@@ -1,3 +1,4 @@
+import 'package:app_dashboard/core/strings.dart';
 import 'package:app_dashboard/featuers/stories/ui/logic/cubit.dart';
 import 'package:app_dashboard/featuers/stories/ui/logic/states.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class DeleteStory extends StatelessWidget {
             ToastService.error(context, state.errorMessage);
           }
           if (state.isDeleteSuccess) {
-            ToastService.success(context, 'Story Deleted Successfully');
+            ToastService.success(context, DashboardStrings.storyDeletedSuccessfully);
           }
         },
         builder: (context, state) {
@@ -35,7 +36,7 @@ class DeleteStory extends StatelessWidget {
                       color: AppColors.red,
                       icon: Icons.delete_forever_outlined,
                       iconColor: AppColors.red,
-                      text: 'Delete',
+                      text: DashboardStrings.deleted,
                       textColor: AppColors.red,
                     ),
             ),

@@ -1,3 +1,4 @@
+import 'package:app_dashboard/core/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/core/constants/app_colors.dart';
 import 'package:shared/utils/helpers/navigation_helper.dart';
@@ -13,7 +14,7 @@ class AppBackButton extends StatelessWidget {
         children: [
           Icon(Icons.arrow_back, color: AppColors.foreground),
           Text(
-            'BackToDashboard',
+            DashboardStrings.backToDashboard,
             style: TextStyle(
               height: 1.5,
               fontWeight: FontWeight.bold,

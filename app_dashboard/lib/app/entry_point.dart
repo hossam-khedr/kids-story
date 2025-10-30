@@ -1,9 +1,8 @@
 import 'package:app_dashboard/core/app_routse.dart';
-import 'package:app_dashboard/featuers/categories/ui/screens/add_category_screen.dart';
+import 'package:app_dashboard/core/dashboard_color.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/utils/helpers/responsive_helper.dart';
-
-import '../featuers/home/ui/home_screen.dart';
+import 'package:shared/utils/helpers/widgets/base_cubit_wrapper.dart';
 
 class EntryPoint extends StatelessWidget {
   const EntryPoint({super.key});
@@ -11,10 +10,18 @@ class EntryPoint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ResponsiveHelper.instance.init(context);
-    return  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: AppRoutes.buildRoutes,
-      initialRoute: AppRoutes.home,
+    return BaseCubitWrapper(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: AppRoutes.buildRoutes,
+        initialRoute: AppRoutes.root,
+        theme: ThemeData(
+          scaffoldBackgroundColor: DashboardColors.backgroundColor,
+          // appBarTheme: AppBarThemeData(
+          //   backgroundColor: DashboardColors.whait
+          // )
+        ),
+      ),
     );
   }
 }

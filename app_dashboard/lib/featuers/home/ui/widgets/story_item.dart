@@ -1,3 +1,4 @@
+import 'package:app_dashboard/core/strings.dart';
 import 'package:app_dashboard/featuers/home/ui/widgets/delete_or_update_story.dart';
 import 'package:app_dashboard/featuers/home/ui/widgets/delete_story.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +53,7 @@ class StoryItem extends StatelessWidget {
               style: TextStyle(
                 color: Colors.grey,
                 fontWeight: FontWeight.normal,
+                overflow: TextOverflow.ellipsis
               ),
             ),
             Gap(ResponsiveHelper.r.height(2)),
@@ -63,7 +65,7 @@ class StoryItem extends StatelessWidget {
                     color: AppColors.primary,
                     icon: Icons.edit,
                     iconColor: AppColors.primary,
-                    text: 'Edit',
+                    text: DashboardStrings.edit,
                     textColor: AppColors.primary,
                   ),
                 ),

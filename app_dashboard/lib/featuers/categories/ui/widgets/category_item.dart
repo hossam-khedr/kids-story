@@ -1,3 +1,4 @@
+import 'package:app_dashboard/core/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/core/constants/app_colors.dart';
@@ -57,7 +58,7 @@ class CategoryItem extends StatelessWidget {
                     if (state.isDeleteSuccess) {
                       ToastService.success(
                         context,
-                        'Category Deleted Successfully',
+                        DashboardStrings.categoryDeletedSuccessfully,
                       );
                     }
                     if (state.isDeleteError) {

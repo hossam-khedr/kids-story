@@ -1,4 +1,5 @@
 import 'package:app_dashboard/core/app_routse.dart';
+import 'package:app_dashboard/core/strings.dart';
 import 'package:app_dashboard/core/widgets/add_button.dart';
 import 'package:app_dashboard/featuers/categories/ui/widgets/category_list.dart';
 
@@ -42,7 +43,7 @@ class _SideMenuState extends State<SideMenu> {
                 children: [
                   Icon(Icons.book, color: AppColors.primary),
                   AppText(
-                    data: 'StoryTime',
+                    data: DashboardStrings.appName,
                     style: TextStyle(
                       fontSize: ResponsiveHelper.r.font(10),
                       fontWeight: FontWeight.bold,
@@ -56,7 +57,7 @@ class _SideMenuState extends State<SideMenu> {
             Padding(
               padding: ResponsiveHelper.r.paddingAll(10),
               child: AppText(
-                data: 'Categories',
+                data: DashboardStrings.categories,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: AppColors.sidebar,
@@ -72,7 +73,7 @@ class _SideMenuState extends State<SideMenu> {
                 vertical: 5,
               ),
               child: AddButton(
-                text: 'AddCategory',
+                text: DashboardStrings.addCategory,
                 onTap: () {
                   NavigationHelper.pushNamed(context, AppRoutes.addCategory);
                 },

@@ -1,3 +1,4 @@
+import 'package:app_dashboard/core/strings.dart';
 import 'package:app_dashboard/featuers/stories/ui/logic/cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,7 +46,7 @@ class _CategoryListState extends State<CategoryList> {
           }
           if (state.isGetSuccess|| state.isDeleteLoading || state.isDeleteError) {
             if (state.categories.isEmpty) {
-              return Center(child: AppText(data: 'Categories Empty'));
+              return Center(child: AppText(data: DashboardStrings.categoriesEmpty));
             }
             return Padding(
               padding: ResponsiveHelper.r.paddingSymmetric(horizontal: 10),
@@ -87,7 +88,7 @@ class _CategoryListState extends State<CategoryList> {
                           ),
                           child: AddButton(
                             color: AppColors.secondary,
-                            text: 'AddNewStory',
+                            text: DashboardStrings.addNewStory,
                             onTap: () => NavigationHelper.pushNamed(
                               context,
                               AppRoutes.addStory,

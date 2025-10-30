@@ -1,0 +1,1 @@
+enum RootBodyEnum{dashboard,categories,stories,settings}
