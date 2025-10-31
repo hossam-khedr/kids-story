@@ -1,7 +1,6 @@
 import 'package:app_dashboard/core/dashboard_color.dart';
 import 'package:app_dashboard/core/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:shared/core/constants/app_colors.dart';
 import 'package:shared/utils/helpers/responsive_helper.dart';
 
 class CustomSearchBar extends StatelessWidget {

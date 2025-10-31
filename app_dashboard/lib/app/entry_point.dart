@@ -14,7 +14,7 @@ class EntryPoint extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: AppRoutes.buildRoutes,
-        initialRoute: AppRoutes.root,
+        initialRoute: AppRoutes.auth,
         theme: ThemeData(
           scaffoldBackgroundColor: DashboardColors.backgroundColor,
           // appBarTheme: AppBarThemeData(
