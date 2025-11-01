@@ -23,7 +23,7 @@ class SafetyTips extends StatelessWidget {
             data: 'نصائح الأمان:',
             style: TextStyle(
               color: Colors.brown,
-              fontSize: ResponsiveHelper.r.font(10),
+              fontSize: ResponsiveHelper.r.font(8),
             ),
           ),
           Row(
@@ -38,7 +38,7 @@ class SafetyTips extends StatelessWidget {
                 data: 'استخدم كلمة مرور فريدة لا تستخدمها في مواقع أخرى',
                 style: TextStyle(
                   color: Colors.brown,
-                  fontSize: ResponsiveHelper.r.font(8),
+                  fontSize: ResponsiveHelper.r.font(6),
                 ),
               ),
             ],
@@ -55,7 +55,7 @@ class SafetyTips extends StatelessWidget {
                 data: 'امزج بين الأحرف والأرقام والرموز الخاصة',
                 style: TextStyle(
                   color: Colors.brown,
-                  fontSize: ResponsiveHelper.r.font(8),
+                  fontSize: ResponsiveHelper.r.font(6),
                 ),
               ),
             ],
@@ -72,7 +72,7 @@ class SafetyTips extends StatelessWidget {
                 data: 'تجنب المعلومات الشخصية الواضحة',
                 style: TextStyle(
                   color: Colors.brown,
-                  fontSize: ResponsiveHelper.r.font(8),
+                  fontSize: ResponsiveHelper.r.font(6),
                 ),
               ),
             ],

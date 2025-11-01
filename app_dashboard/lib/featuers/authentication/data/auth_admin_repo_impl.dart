@@ -30,11 +30,18 @@ class AuthAdminRepoImpl implements AuthAdminRepo {
           email: email,
           password: password,
         );
-        final accessToken = response.data['accessToken'];
-        adminLocalDataSource.saveAdminAccessToken(
-          key: ApiConstants.tokenKey,
+        final accessToken = response.data['accessToken'] as String;
+        final refreshToken = response.data['refreshToken'] as String;
+      await  adminLocalDataSource.saveAdminAccessToken(
+          key: ApiConstants.adminAccessToken,
           value: accessToken,
         );
+        await  adminLocalDataSource.saveAdminRefreshToken(
+          key: ApiConstants.adminRefreshToken,
+          value: refreshToken,
+        );
+      print("ACCESS TOKEN : $accessToken");
+      print("REFRESH TOKEN : $refreshToken");
         return const Right(null);
       } else {
         return const Left(NetworkFailure('No Internet Connection'));

@@ -25,7 +25,7 @@ class BackToLogin extends StatelessWidget {
             style: TextStyle(
               color: DashboardColors.darkGray,
               fontWeight: FontWeight.w200,
-              fontSize: ResponsiveHelper.r.font(10),
+              fontSize: ResponsiveHelper.r.font(8),
             ),
           ),
         ),

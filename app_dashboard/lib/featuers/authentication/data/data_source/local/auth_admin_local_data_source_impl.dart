@@ -7,5 +7,10 @@ class AuthAdminLocalDataSourceImpl implements AuthAdminLocalDataSource{
     await CacheHelper.setData(key, value);
   }
 
+  @override
+  Future<void> saveAdminRefreshToken({required String key, required String value})async {
+    await CacheHelper.setData(key, value);
+  }
+
 
 }

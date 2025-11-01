@@ -18,7 +18,7 @@ class AppButton extends StatelessWidget {
       height: height ?? ResponsiveHelper.r.height(7.5),
       child: ElevatedButton(
         style: ButtonStyle(
-          backgroundColor: WidgetStatePropertyAll(DashboardColors.pink),
+          backgroundColor: const WidgetStatePropertyAll(DashboardColors.pink),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
@@ -28,7 +28,7 @@ class AppButton extends StatelessWidget {
         onPressed: onPressed,
         child: AppText(
           data: text,
-          style: TextStyle(color: DashboardColors.whait,fontSize: ResponsiveHelper.r.font(12)),
+          style: TextStyle(color: DashboardColors.whait,fontSize: ResponsiveHelper.r.font(10)),
         ),
       ),
     );

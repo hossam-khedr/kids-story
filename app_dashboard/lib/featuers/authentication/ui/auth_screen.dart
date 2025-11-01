@@ -56,32 +56,31 @@ class _AuthScreenState extends State<AuthScreen> {
                   Gap(ResponsiveHelper.r.height(4)),
                   SizedBox(
                     width: ResponsiveHelper.r.width(35),
-                   // height: ResponsiveHelper.r.height(120),
+                    //height: ResponsiveHelper.r.height(100),
                     child: Card(
+                      clipBehavior: Clip.none,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)
                       ),
                       color: DashboardColors.whait,
-                    child: IndexedStack(
-                      index: _currentIndex,
-                      children: [
-                        LoginForm(
-                          createAccount: () => _goTo(1),
-                          forgotTap: () => _goTo(2),
-                        ),
-                        RegisterForm(
-                          onLoginTap: () => _goTo(0),
-                        ),
-                        ForgotForm(
-                          onResetPasswordTap: () => _goTo(3),
-                          onLoginTap: () => _goTo(0),
-                        ),
-                        ResetForm(
-                          onLoginTap: () => _goTo(0),
-                          onForgotTap: () => _goTo(2),
-                        ),
-                      ],
-                    )),
+                    child:  AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 300),
+                      transitionBuilder: (child, animation) {
+                        final offsetAnimation = Tween<Offset>(
+                          begin: const Offset(0.02, 0),
+                          end: Offset.zero,
+                        ).animate(animation);
+                        return SlideTransition(
+                          position: offsetAnimation,
+                          child: FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          ),
+                        );
+                      },
+                      child: _buildForm(_currentIndex),
+                    ),
+                    ),
                   ),
                 ],
               ),
@@ -90,6 +89,35 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
       ),
     );
+  }
+  Widget _buildForm(int index) {
+    switch (index) {
+      case 0:
+        return LoginForm(
+          key: const ValueKey('login'),
+          createAccount: () => _goTo(1),
+          forgotTap: () => _goTo(2),
+        );
+      case 1:
+        return RegisterForm(
+          key: const ValueKey('register'),
+          onLoginTap: () => _goTo(0),
+        );
+      case 2:
+        return ForgotForm(
+          key: const ValueKey('forgot'),
+          onResetPasswordTap: () => _goTo(3),
+          onLoginTap: () => _goTo(0),
+        );
+      case 3:
+        return ResetForm(
+          key: const ValueKey('reset'),
+          onLoginTap: () => _goTo(0),
+          onForgotTap: () => _goTo(2),
+        );
+      default:
+        return const SizedBox.shrink();
+    }
   }
 }
 

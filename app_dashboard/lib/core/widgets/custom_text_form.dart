@@ -80,7 +80,7 @@ class _CustomTextFormState extends State<CustomTextForm> {
             : null,
         hintText: widget.hint,
         hintStyle: TextStyle(
-          fontSize: ResponsiveHelper.r.font(10),
+          fontSize: ResponsiveHelper.r.font(8),
           color: Colors.grey,
         ),
         filled: widget.filled,

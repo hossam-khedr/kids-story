@@ -44,7 +44,7 @@ class ForgotForm extends StatelessWidget {
             data:
                 'لا تقلق، سنرسل لك رابط إعادة تعيين كلمة المرور على بريدك الإلكتروني',
             style: TextStyle(
-              fontSize: ResponsiveHelper.r.font(10),
+              fontSize: ResponsiveHelper.r.font(8),
               fontWeight: FontWeight.normal,
               color: Colors.grey[400],
             ),
@@ -55,7 +55,7 @@ class ForgotForm extends StatelessWidget {
             child: AppText(
               data: 'البريد الإلكتروني',
               style: TextStyle(
-                fontSize: ResponsiveHelper.r.font(10),
+                fontSize: ResponsiveHelper.r.font(8),
                 fontWeight: FontWeight.normal,
                 color: DashboardColors.darkGray,
               ),

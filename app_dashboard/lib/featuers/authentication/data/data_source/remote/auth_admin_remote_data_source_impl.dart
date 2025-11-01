@@ -4,7 +4,7 @@ import 'package:shared/core/network/dio_client.dart';
 import 'package:shared/utils/helpers/cache_helper.dart';
 
 class AuthAdminRemoteDataSourceImpl implements AuthAdminRemoteDataSource {
-  final String? token = CacheHelper.getString(ApiConstants.tokenKey);
+
   @override
   Future<dynamic> loginAdmin({
     required String email,
@@ -26,7 +26,6 @@ class AuthAdminRemoteDataSourceImpl implements AuthAdminRemoteDataSource {
     final response = await DioHelper.postData(
       url: ApiConstants.registerAdminEndPoint,
       data: {"name": name, "email": email, "password": password},
-      //headers: {"authorization":"Bearer $token"}
     );
     return response;
   }

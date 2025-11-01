@@ -55,7 +55,7 @@ class ResetForm extends StatelessWidget {
             child: AppText(
               data: 'كلمة المرور الجديدة',
               style: TextStyle(
-                fontSize: ResponsiveHelper.r.font(10),
+                fontSize: ResponsiveHelper.r.font(8),
                 fontWeight: FontWeight.normal,
                 color: DashboardColors.darkGray,
               ),
@@ -75,7 +75,7 @@ class ResetForm extends StatelessWidget {
             child: AppText(
               data: 'تأكيد كلمة المرور الجديدة',
               style: TextStyle(
-                fontSize: ResponsiveHelper.r.font(10),
+                fontSize: ResponsiveHelper.r.font(8),
                 fontWeight: FontWeight.normal,
                 color: DashboardColors.darkGray,
               ),
@@ -97,9 +97,9 @@ class ResetForm extends StatelessWidget {
           BackToLogin(onPressed: onLoginTap),
           TextButton(
             onPressed: onForgotTap,
-            child: const AppText(
+            child:  AppText(
               data: 'نسيت كلمة المرور الحالية؟',
-              style: TextStyle(color: DashboardColors.pink),
+              style: TextStyle(color: DashboardColors.pink,fontSize:ResponsiveHelper.r.font(8) ),
             ),
           ),
         ],

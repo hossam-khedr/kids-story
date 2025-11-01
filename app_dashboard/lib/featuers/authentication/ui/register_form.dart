@@ -73,7 +73,7 @@ class _RegisterFormState extends State<RegisterForm> {
               AppText(
                 data: 'الاسم الكامل',
                 style: TextStyle(
-                  fontSize: ResponsiveHelper.r.font(10),
+                  fontSize: ResponsiveHelper.r.font(8),
                   fontWeight: FontWeight.normal,
                   color: DashboardColors.darkGray,
                 ),
@@ -90,7 +90,7 @@ class _RegisterFormState extends State<RegisterForm> {
               AppText(
                 data: 'البريد الإلكتروني',
                 style: TextStyle(
-                  fontSize: ResponsiveHelper.r.font(10),
+                  fontSize: ResponsiveHelper.r.font(8),
                   fontWeight: FontWeight.normal,
                   color: DashboardColors.darkGray,
                 ),
@@ -107,7 +107,7 @@ class _RegisterFormState extends State<RegisterForm> {
               AppText(
                 data: 'كلمة المرور',
                 style: TextStyle(
-                  fontSize: ResponsiveHelper.r.font(10),
+                  fontSize: ResponsiveHelper.r.font(8),
                   fontWeight: FontWeight.normal,
                   color: DashboardColors.darkGray,
                 ),
@@ -125,7 +125,7 @@ class _RegisterFormState extends State<RegisterForm> {
               AppText(
                 data: 'تأكيد كلمة المرور',
                 style: TextStyle(
-                  fontSize: ResponsiveHelper.r.font(10),
+                  fontSize: ResponsiveHelper.r.font(8),
                   fontWeight: FontWeight.normal,
                   color: DashboardColors.darkGray,
                 ),

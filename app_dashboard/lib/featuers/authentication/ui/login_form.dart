@@ -44,7 +44,11 @@ class _LoginFormState extends State<LoginForm> {
           }
           if (state.isError) {
             NavigationHelper.pop(context);
-            ToastService.error(context, state.errorMessage,position: ToastPosition.bottom);
+            ToastService.error(
+              context,
+              state.errorMessage,
+              position: ToastPosition.bottom,
+            );
           }
           if (state.isSuccess) {
             //NavigationHelper.pop(context);
@@ -72,7 +76,7 @@ class _LoginFormState extends State<LoginForm> {
               AppText(
                 data: 'البريد الإلكتروني',
                 style: TextStyle(
-                  fontSize: ResponsiveHelper.r.font(10),
+                  fontSize: ResponsiveHelper.r.font(8),
                   fontWeight: FontWeight.normal,
                   color: DashboardColors.darkGray,
                 ),
@@ -89,7 +93,7 @@ class _LoginFormState extends State<LoginForm> {
               AppText(
                 data: 'كلمة المرور',
                 style: TextStyle(
-                  fontSize: ResponsiveHelper.r.font(10),
+                  fontSize: ResponsiveHelper.r.font(8),
                   fontWeight: FontWeight.normal,
                   color: DashboardColors.darkGray,
                 ),
@@ -118,14 +122,20 @@ class _LoginFormState extends State<LoginForm> {
                         side: BorderSide(color: Colors.grey[400]!),
                         onChanged: (v) {},
                       ),
-                      const AppText(data: 'تذكرني'),
+                      AppText(
+                        data: 'تذكرني',
+                        style: TextStyle(fontSize: ResponsiveHelper.r.font(8)),
+                      ),
                     ],
                   ),
                   TextButton(
                     onPressed: widget.forgotTap,
-                    child: const AppText(
+                    child: AppText(
                       data: 'نسيت كلمة المرور؟',
-                      style: TextStyle(color: DashboardColors.pink),
+                      style: TextStyle(
+                        color: DashboardColors.pink,
+                        fontSize: ResponsiveHelper.r.font(8),
+                      ),
                     ),
                   ),
                 ],
