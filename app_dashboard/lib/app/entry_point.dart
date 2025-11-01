@@ -10,17 +10,15 @@ class EntryPoint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ResponsiveHelper.instance.init(context);
-    return BaseCubitWrapper(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        routes: AppRoutes.buildRoutes,
-        initialRoute: AppRoutes.auth,
-        theme: ThemeData(
-          scaffoldBackgroundColor: DashboardColors.backgroundColor,
-          // appBarTheme: AppBarThemeData(
-          //   backgroundColor: DashboardColors.whait
-          // )
-        ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      routes: AppRoutes.buildRoutes,
+      initialRoute: AppRoutes.auth,
+      theme: ThemeData(
+        scaffoldBackgroundColor: DashboardColors.backgroundColor,
+        // appBarTheme: AppBarThemeData(
+        //   backgroundColor: DashboardColors.whait
+        // )
       ),
     );
   }
