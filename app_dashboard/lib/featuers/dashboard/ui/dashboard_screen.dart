@@ -3,6 +3,7 @@ import 'package:app_dashboard/core/svg_icon.dart';
 import 'package:app_dashboard/featuers/dashboard/ui/logic/controller/cubit.dart';
 import 'package:app_dashboard/featuers/dashboard/ui/logic/controller/stats.dart';
 import 'package:app_dashboard/featuers/dashboard/ui/widgets/add_item.dart';
+import 'package:app_dashboard/featuers/dashboard/ui/widgets/create_category.dart';
 import 'package:app_dashboard/featuers/dashboard/ui/widgets/dashboard_info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,6 +24,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     super.initState();
     context.read<DashboardCubit>().getDashboardStats();
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -50,49 +52,60 @@ class _DashboardScreenState extends State<DashboardScreen> {
           Gap(ResponsiveHelper.r.height(6)),
           BlocProvider.value(
             value: BlocProvider.of<DashboardCubit>(context),
-            child: BlocBuilder<DashboardCubit,DashboardStats>(
-              builder: (context,state){
-                if(state.isLoading){
-                  return const Center(child: CircularProgressIndicator(),);
+            child: BlocBuilder<DashboardCubit, DashboardStats>(
+              builder: (context, state) {
+                if (state.isLoading) {
+                  return const Center(child: CircularProgressIndicator());
                 }
-                if(state.isError){
-                  return Center(child: AppText(data: state.errorMessage),);
+                if (state.isError) {
+                  return Center(child: AppText(data: state.errorMessage));
                 }
-                if(state.isSuccess){
+                if (state.isSuccess) {
                   return Row(
                     spacing: ResponsiveHelper.r.width(1.5),
                     children: [
-                       Expanded(
+                      Expanded(
                         child: DashboardInfoCard(
                           title: 'إجمالي التصنيفات',
-                          counter:state.statisticsResponse!.contentStatsResponse.totalCategories.toString() ,
+                          counter: state
+                              .statisticsResponse!
+                              .contentStatsResponse
+                              .totalCategories
+                              .toString(),
                           cardColor: DashboardColors.pink,
                           icon: SvgIcons.folder,
                         ),
                       ),
-                       Expanded(
+                      Expanded(
                         child: DashboardInfoCard(
                           title: 'إجمالي القصص',
-                          counter: state.statisticsResponse!.contentStatsResponse.totalStories.toString(),
+                          counter: state
+                              .statisticsResponse!
+                              .contentStatsResponse
+                              .totalStories
+                              .toString(),
                           cardColor: DashboardColors.blue,
                           icon: SvgIcons.book,
                         ),
                       ),
-                       Expanded(
+                      Expanded(
                         child: DashboardInfoCard(
                           title: 'المستخدمين النشطين',
-                          counter: state.statisticsResponse!.userStatsResponse.total.toString(),
+                          counter: state
+                              .statisticsResponse!
+                              .userStatsResponse
+                              .total
+                              .toString(),
                           cardColor: DashboardColors.purble,
                           icon: SvgIcons.user,
                         ),
                       ),
                     ],
                   );
-                }else{
+                } else {
                   return const SizedBox.shrink();
                 }
               },
-
             ),
           ),
           Gap(ResponsiveHelper.r.height(5)),
@@ -100,7 +113,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
             margin: EdgeInsets.zero,
             color: DashboardColors.whait,
             child: Padding(
-              padding: ResponsiveHelper.r.paddingSymmetric(vertical: 20,horizontal: 15),
+              padding: ResponsiveHelper.r.paddingSymmetric(
+                vertical: 20,
+                horizontal: 15,
+              ),
               child: Column(
                 spacing: ResponsiveHelper.r.height(3),
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,8 +132,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   Row(
                     spacing: ResponsiveHelper.r.width(1),
                     children: [
-                      const Expanded(
+                      Expanded(
                         child: AddItem(
+                          onTap: () => showDialog(
+                            context: context,
+                            builder: (context) => const CreateCategory(),
+                          ),
+
                           color: DashboardColors.lightPink,
                           buttonColor: DashboardColors.pink,
                           title: 'اضافة تصنيف جديد',

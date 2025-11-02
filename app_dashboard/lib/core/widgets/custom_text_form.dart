@@ -14,6 +14,7 @@ class CustomTextForm extends StatefulWidget {
   final Color? colorBorder;
   final String? prefixIcon;
   final TextEditingController? controller;
+  final int? maxLines;
 
   const CustomTextForm({
     super.key,
@@ -22,7 +23,7 @@ class CustomTextForm extends StatefulWidget {
     this.filled = true,
     this.fillColor,
     this.prefixIcon,
-    this.controller, this.colorBorder,
+    this.controller, this.colorBorder, this.maxLines,
   });
 
   @override
@@ -88,6 +89,7 @@ class _CustomTextFormState extends State<CustomTextForm> {
         filled: widget.filled,
         fillColor: widget.fillColor ?? DashboardColors.backgroundColor,
       ),
+      maxLines: widget.maxLines,
     );
   }
 }

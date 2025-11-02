@@ -8,8 +8,19 @@ class AppButton extends StatelessWidget {
   final double? height;
   final void Function()? onPressed;
   final String text;
+  final Color? color;
+  final Color? textColor;
+  final double? textFontSize;
 
-  const AppButton({super.key, this.width, this.height, this.onPressed, required this.text, });
+  const AppButton({
+    super.key,
+    this.width,
+    this.height,
+    this.onPressed,
+    required this.text,
+    this.color,
+    this.textColor, this.textFontSize,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +29,22 @@ class AppButton extends StatelessWidget {
       height: height ?? ResponsiveHelper.r.height(7.5),
       child: ElevatedButton(
         style: ButtonStyle(
-          backgroundColor: const WidgetStatePropertyAll(DashboardColors.pink),
+          elevation: const WidgetStatePropertyAll(0),
+          shadowColor: const WidgetStatePropertyAll(Colors.transparent),
+          backgroundColor: WidgetStatePropertyAll(
+            color ?? DashboardColors.pink,
+          ),
           shape: WidgetStatePropertyAll(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
-            ),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           ),
         ),
         onPressed: onPressed,
         child: AppText(
           data: text,
-          style: TextStyle(color: DashboardColors.whait,fontSize: ResponsiveHelper.r.font(10)),
+          style: TextStyle(
+            color: textColor ?? DashboardColors.whait,
+            fontSize: ResponsiveHelper.r.font(textFontSize??10),
+          ),
         ),
       ),
     );
