@@ -21,9 +21,9 @@ class _RootScreenState extends State<RootScreen> {
 
   List<Widget> pages = [
   const DashboardScreen(),
-    Center(child: AppText(data: 'Category')),
-    Center(child: AppText(data: 'Stories')),
-    Center(child: AppText(data: 'Settings')),
+    const Center(child: AppText(data: 'Category')),
+    const Center(child: AppText(data: 'Stories')),
+    const Center(child: AppText(data: 'Settings')),
   ];
 
   @override
@@ -47,7 +47,7 @@ class _RootScreenState extends State<RootScreen> {
               flex: 4,
               child: Column(
                 children: [
-                  RootAppBar(),
+                  const RootAppBar(),
                   Expanded(child: pages[currentIndex]),
                 ],
               ),

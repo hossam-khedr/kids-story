@@ -12,6 +12,7 @@ void main()async {
   await setUpCategories();
   await setUpStories();
   await setupAuthAdmin();
+  await setupDashboard();
   runApp( const EntryPoint());
 }
 

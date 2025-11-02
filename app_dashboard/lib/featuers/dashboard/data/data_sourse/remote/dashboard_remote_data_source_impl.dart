@@ -1,0 +1,17 @@
+import 'package:app_dashboard/featuers/dashboard/data/data_sourse/remote/dashboard_remote_data_source.dart';
+import 'package:shared/core/constants/api_constants.dart';
+import 'package:shared/core/network/dio_client.dart';
+import 'package:shared/utils/helpers/cache_helper.dart';
+
+class DashboardRemoteDataSourceImpl implements DashBoardRemoteDataSource {
+  final adminToken = CacheHelper.getString(ApiConstants.adminAccessToken);
+
+  @override
+  Future<dynamic> getDashboardStats() async {
+    final response = await DioHelper.getData(
+      url: ApiConstants.adminStatsDashboardEndPoint,
+      headers: {"Authorization":"Bearer $adminToken"}
+    );
+    return response;
+  }
+}

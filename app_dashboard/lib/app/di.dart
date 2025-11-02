@@ -11,6 +11,11 @@ import 'package:app_dashboard/featuers/authentication/data/data_source/remote/au
 import 'package:app_dashboard/featuers/authentication/ui/logic/auth_admin_repo.dart';
 import 'package:app_dashboard/featuers/authentication/ui/logic/controller/auth_admin_cubit.dart';
 import 'package:app_dashboard/featuers/categories/ui/logic/controller/cubit.dart';
+import 'package:app_dashboard/featuers/dashboard/data/data_sourse/remote/dashboard_remote_data_source.dart';
+import 'package:app_dashboard/featuers/dashboard/data/data_sourse/remote/dashboard_remote_data_source_impl.dart';
+import 'package:app_dashboard/featuers/dashboard/data/repos/dashboard_repo_impl.dart';
+import 'package:app_dashboard/featuers/dashboard/ui/logic/controller/cubit.dart';
+import 'package:app_dashboard/featuers/dashboard/ui/logic/dashboard_repo.dart';
 import 'package:app_dashboard/featuers/stories/ui/logic/cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared/core/network/network_info.dart';
@@ -54,5 +59,16 @@ Future<void> setupAuthAdmin() async {
     ),
   );
 
-  getIt.registerFactory(()=>AuthAdminCubit(adminRepo: getIt()));
+  getIt.registerFactory(() => AuthAdminCubit(adminRepo: getIt()));
+}
+
+Future<void> setupDashboard() async {
+  getIt.registerFactory<DashBoardRemoteDataSource>(
+    () => DashboardRemoteDataSourceImpl(),
+  );
+  getIt.registerFactory<DashboardRepo>(
+    () => DashboardRepoImpl(remoteDataSource: getIt(), networkInfo: getIt()),
+  );
+
+  getIt.registerFactory(() => DashboardCubit(dashboardRepo: getIt()));
 }

@@ -43,8 +43,10 @@ class _CustomTextFormState extends State<CustomTextForm> {
     return TextFormField(
       controller: widget.controller,
       obscureText: isPasswordHidden,
+      style: TextStyle(
+        fontSize: ResponsiveHelper.r.font(8)
+      ),
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30),
           borderSide: BorderSide(color:widget.colorBorder?? DashboardColors.backgroundColor),
@@ -55,7 +57,7 @@ class _CustomTextFormState extends State<CustomTextForm> {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30),
-          borderSide: BorderSide(color: DashboardColors.lightPink, width: 2.0),
+          borderSide:const BorderSide(color: DashboardColors.lightPink, width: 2.0),
         ),
         prefixIcon: Padding(
           padding: ResponsiveHelper.r.paddingAll(8),

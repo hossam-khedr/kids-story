@@ -1,6 +1,7 @@
 import 'package:app_dashboard/core/dashboard_color.dart';
 import 'package:app_dashboard/featuers/root/widgets/side_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared/core/widgets/app_text.dart';
 import 'package:shared/utils/helpers/responsive_helper.dart';
 
@@ -27,9 +28,9 @@ class SideBarItem extends StatelessWidget {
         child: Row(
           spacing: ResponsiveHelper.r.width(1),
           children: [
-            Icon(
+            SvgPicture.asset(
               model.icon,
-              size: 20,
+              width: ResponsiveHelper.r.width(1.3),
               color: isSelectedItem
                   ? DashboardColors.pink
                   : DashboardColors.darkGray,
@@ -38,8 +39,8 @@ class SideBarItem extends StatelessWidget {
                 color: isSelectedItem
                     ? DashboardColors.pink
                     : DashboardColors.darkGray,
-                fontWeight: FontWeight.normal,
-                fontSize: ResponsiveHelper.r.font(12)
+                fontWeight: FontWeight.w400,
+                fontSize: ResponsiveHelper.r.font(8)
             ),
             ),
           ],

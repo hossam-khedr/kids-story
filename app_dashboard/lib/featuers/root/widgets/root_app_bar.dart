@@ -24,7 +24,7 @@ class RootAppBar extends StatelessWidget {
             Container(
               color: DashboardColors.whait,
               width: ResponsiveHelper.r.width(25),
-              child: CustomSearchBar(),
+              child: const CustomSearchBar(),
             ),
             Row(
               spacing: ResponsiveHelper.r.width(1),
@@ -37,7 +37,7 @@ class RootAppBar extends StatelessWidget {
                       data: 'Hossam Khedr',
                       style: TextStyle(
                         color: DashboardColors.darkGray,
-                        fontSize: ResponsiveHelper.r.font(10),
+                        fontSize: ResponsiveHelper.r.font(8),
                         fontWeight: FontWeight.bold
                       ),
                     ),
@@ -48,7 +48,7 @@ class RootAppBar extends StatelessWidget {
                     ),),
                   ],
                 ),
-                CircleAvatar(),
+                const CircleAvatar(),
               ],
             ),
           ],

@@ -1,4 +1,5 @@
 import 'package:app_dashboard/core/dashboard_color.dart';
+import 'package:app_dashboard/core/svg_icon.dart';
 import 'package:app_dashboard/featuers/root/widgets/side_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -18,7 +19,7 @@ class RootSideBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       color: DashboardColors.whait,
       margin: EdgeInsets.zero,
       elevation: 0.5,
@@ -29,7 +30,7 @@ class RootSideBar extends StatelessWidget {
             Row(
               spacing: ResponsiveHelper.r.width(1),
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundColor: DashboardColors.pink,
                   child: Icon(
                     Icons.book_outlined,
@@ -59,14 +60,19 @@ class RootSideBar extends StatelessWidget {
                 ),
               ],
             ),
-            Gap(30),
-            Divider(),
-            Gap(10),
+            Gap(ResponsiveHelper.r.height(4)),
+            const Divider(),
+            Gap(ResponsiveHelper.r.height(2)),
             for (int i = 0; i < sideBarListItem.length; i++)
-              SideBarItem(
-                  onTap: () => onItemSelected(i),
-                  model: sideBarListItem[i],
-                  isSelectedItem:currentIndex==i
+              Column(
+                children: [
+                  SideBarItem(
+                      onTap: () => onItemSelected(i),
+                      model: sideBarListItem[i],
+                      isSelectedItem:currentIndex==i
+                  ),
+                  Gap(ResponsiveHelper.r.height(1))
+                ],
               )
           ],
         ),
@@ -77,14 +83,14 @@ class RootSideBar extends StatelessWidget {
 
 class SideBarItemModel {
   String title;
-  IconData icon;
+  String icon;
 
   SideBarItemModel({required this.title, required this.icon});
 }
 
 List<SideBarItemModel> sideBarListItem = [
-  SideBarItemModel(title: 'لوحة التحكم', icon: Icons.dashboard),
-  SideBarItemModel(title: 'التصنيفات', icon: Icons.category),
-  SideBarItemModel(title: 'القصص', icon: Icons.book),
-  SideBarItemModel(title: 'الاعدادات', icon: Icons.settings),
+  SideBarItemModel(title: 'لوحة التحكم', icon: SvgIcons.dashboard),
+  SideBarItemModel(title: 'التصنيفات', icon: SvgIcons.folder),
+  SideBarItemModel(title: 'القصص', icon: SvgIcons.book),
+  SideBarItemModel(title: 'الاعدادات', icon: SvgIcons.settings),
 ];

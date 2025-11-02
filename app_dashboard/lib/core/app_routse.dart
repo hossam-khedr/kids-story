@@ -3,6 +3,7 @@ import 'package:app_dashboard/featuers/authentication/ui/auth_screen.dart';
 import 'package:app_dashboard/featuers/authentication/ui/logic/controller/auth_admin_cubit.dart';
 import 'package:app_dashboard/featuers/categories/ui/logic/controller/cubit.dart';
 import 'package:app_dashboard/featuers/categories/ui/screens/add_category_screen.dart';
+import 'package:app_dashboard/featuers/dashboard/ui/logic/controller/cubit.dart';
 import 'package:app_dashboard/featuers/home/ui/home_screen.dart';
 import 'package:app_dashboard/featuers/root/root_screen.dart';
 import 'package:app_dashboard/featuers/stories/ui/logic/cubit.dart';
@@ -22,7 +23,10 @@ class AppRoutes {
       create: (_) => getIt<AuthAdminCubit>(),
       child: const AuthScreen(),
     ),
-    root: (context) => const RootScreen(),
+    root: (context) => BlocProvider(
+      child: const RootScreen(),
+      create: (_) => getIt<DashboardCubit>(),
+    ),
     home: (context) => MultiBlocProvider(
       providers: [
         BlocProvider(create: (c) => getIt<CategoriesCubit>()),

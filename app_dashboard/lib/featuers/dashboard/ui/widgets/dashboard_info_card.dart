@@ -31,12 +31,13 @@ class DashboardInfoCard extends StatelessWidget {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: ResponsiveHelper.r.height(2),
             children: [
               AppText(
                 data: title,
                 style: TextStyle(
                   color: DashboardColors.whait,
-                  fontSize: ResponsiveHelper.r.font(10),
+                  fontSize: ResponsiveHelper.r.font(8),
                   fontWeight: FontWeight.w200,
                 ),
               ),
@@ -44,7 +45,7 @@ class DashboardInfoCard extends StatelessWidget {
                 data: counter,
                 style: TextStyle(
                   color: DashboardColors.whait,
-                  fontSize: ResponsiveHelper.r.font(20),
+                  fontSize: ResponsiveHelper.r.font(16),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -54,11 +55,14 @@ class DashboardInfoCard extends StatelessWidget {
             padding: ResponsiveHelper.r.paddingAll(5),
             decoration: BoxDecoration(
               color: DashboardColors.whait.withAlpha(40),
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(20),
             ),
-            child: SvgPicture.asset(icon, color: DashboardColors.whait,height: 25,),
+            child: SvgPicture.asset(
+              icon,
+              color: DashboardColors.whait,
+              width: ResponsiveHelper.r.width(2.5),
+            ),
           ),
-
         ],
       ),
     );
