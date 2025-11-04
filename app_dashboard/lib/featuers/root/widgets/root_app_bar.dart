@@ -1,8 +1,9 @@
 import 'package:app_dashboard/core/dashboard_color.dart';
-import 'package:app_dashboard/featuers/home/ui/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/core/widgets/app_text.dart';
 import 'package:shared/utils/helpers/responsive_helper.dart';
+
+import 'custom_search_bar.dart';
 
 class RootAppBar extends StatelessWidget {
   const RootAppBar({super.key});

@@ -49,16 +49,20 @@ flutter:
   assets:
      - assets/translations/
      - assets/svg/
+     - assets/fonts/
 
 
 
 
 
 
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  fonts:
+     - family: Cairo
+       fonts:
+         - asset: assets/fonts/Cairo-Light.ttf
+         - asset: assets/fonts/Cairo-Regular.ttf
+         - asset: assets/fonts/Cairo-Medium.ttf
+         - asset: assets/fonts/Cairo-SemiBold.ttf
+         - asset: assets/fonts/Cairo-Bold.ttf
+
 

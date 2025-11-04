@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared/core/constants/app_colors.dart';
 import 'package:shared/core/widgets/app_text.dart';
+import 'package:shared/core/widgets/custom_network_image.dart';
 import 'package:shared/utils/helpers/navigation_helper.dart';
 import 'package:shared/utils/helpers/responsive_helper.dart';
 
@@ -51,7 +52,7 @@ class _StoryDetailsDataState extends State<StoryDetailsData> {
           flexibleSpace: FlexibleSpaceBar(
             background: Stack(
               children: [
-                Image.network(widget.image, width: double.infinity, fit: BoxFit.cover),
+                CustomNetworkImage(src: widget.image, width: double.infinity,),
                 Positioned(
                   top: 40,
                   right: 10,

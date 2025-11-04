@@ -15,6 +15,8 @@ class CustomTextForm extends StatefulWidget {
   final String? prefixIcon;
   final TextEditingController? controller;
   final int? maxLines;
+  final bool? readOnly;
+  final void Function()? onTap;
 
   const CustomTextForm({
     super.key,
@@ -23,7 +25,7 @@ class CustomTextForm extends StatefulWidget {
     this.filled = true,
     this.fillColor,
     this.prefixIcon,
-    this.controller, this.colorBorder, this.maxLines,
+    this.controller, this.colorBorder, this.maxLines, this.onTap, this.readOnly,
   });
 
   @override
@@ -42,6 +44,8 @@ class _CustomTextFormState extends State<CustomTextForm> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap:widget.onTap ,
+      readOnly:widget.readOnly??false ,
       controller: widget.controller,
       obscureText: isPasswordHidden,
       style: TextStyle(

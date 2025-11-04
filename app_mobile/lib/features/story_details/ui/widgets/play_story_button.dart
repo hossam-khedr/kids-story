@@ -71,11 +71,11 @@ class PlayStoryButton extends StatelessWidget {
           spacing: ResponsiveHelper.r.width(1),
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-           SvgPicture.asset(AppAssets.book,color: AppColors.whit,),
+           SvgPicture.asset(AppAssets.book,color: AppColors.primary,),
             AppText(
               data: 'قراءه',
               style: TextStyle(
-                color: AppColors.whit,
+                color: AppColors.primary,
                 fontSize: ResponsiveHelper.r.font(16),
                 fontWeight: FontWeight.bold,
               ),

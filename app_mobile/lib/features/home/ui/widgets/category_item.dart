@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared/core/constants/app_colors.dart';
 import 'package:shared/core/widgets/app_text.dart';
+import 'package:shared/core/widgets/custom_network_image.dart';
 import 'package:shared/utils/helpers/responsive_helper.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -40,15 +41,14 @@ class CategoryItem extends StatelessWidget {
         child: Padding(
           padding: ResponsiveHelper.r.paddingAll(8),
           child: Column(
-            spacing: ResponsiveHelper.r.height(1),
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  image,
-                  width: ResponsiveHelper.r.width(25),
-                  height: ResponsiveHelper.r.width(20),
-                  fit: BoxFit.cover,
+                child: CustomNetworkImage(
+                 src:  image,
+                  width: ResponsiveHelper.r.width(20),
+
+
                 ),
               ),
               AppText(

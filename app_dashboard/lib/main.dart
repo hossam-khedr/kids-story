@@ -11,6 +11,7 @@ void main()async {
   CacheHelper.initCacheHelper();
   await setupAuthAdmin();
   await setupDashboard();
+  await setupCategories();
   runApp( const EntryPoint());
 }
 

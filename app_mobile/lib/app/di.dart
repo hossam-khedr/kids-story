@@ -1,3 +1,8 @@
+import 'package:app_mobile/features/my_library/data/data_source/library_data_source.dart';
+import 'package:app_mobile/features/my_library/data/data_source/library_data_source_imp.dart';
+import 'package:app_mobile/features/my_library/data/library_repo_impl.dart';
+import 'package:app_mobile/features/my_library/ui/logic/controller/cubit.dart';
+import 'package:app_mobile/features/my_library/ui/logic/library_repo.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared/core/network/network_info.dart';
 
@@ -55,4 +60,17 @@ Future<void> initStoryDetailsModule() async {
     ),
   );
   getIt.registerFactory(() => StoryDetailsCubit(storyDetailsRepo: getIt()));
+}
+
+Future<void> initLibraryModule() async {
+  getIt.registerFactory<LibraryDataSource>(
+        () => LibraryDataSourceImpl(),
+  );
+  getIt.registerFactory<LibraryRepo>(
+        () => LibraryRepoImpl(
+      libraryDataSource: getIt(),
+      networkInfo: getIt(),
+    ),
+  );
+  getIt.registerFactory(() => LibraryCubit(libraryRepo: getIt()));
 }

@@ -1,12 +1,9 @@
-import 'package:app_dashboard/core/dashboard_color.dart';
-import 'package:app_dashboard/core/widgets/app_text_field.dart';
+
+import 'package:app_dashboard/featuers/categories/ui/categories_screen.dart';
 import 'package:app_dashboard/featuers/dashboard/ui/dashboard_screen.dart';
-import 'package:app_dashboard/featuers/home/ui/widgets/search_bar.dart';
 import 'package:app_dashboard/featuers/root/widgets/root_app_bar.dart';
 import 'package:app_dashboard/featuers/root/widgets/side_bar.dart';
-import 'package:app_dashboard/featuers/root/widgets/side_bar_item.dart';
 import 'package:flutter/material.dart';
-import 'package:shared/core/constants/app_colors.dart';
 import 'package:shared/core/widgets/app_text.dart';
 
 class RootScreen extends StatefulWidget {
@@ -21,7 +18,7 @@ class _RootScreenState extends State<RootScreen> {
 
   List<Widget> pages = [
   const DashboardScreen(),
-    const Center(child: AppText(data: 'Category')),
+    const CategoriesScreen(),
     const Center(child: AppText(data: 'Stories')),
     const Center(child: AppText(data: 'Settings')),
   ];

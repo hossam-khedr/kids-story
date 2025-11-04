@@ -1,7 +1,8 @@
-
+import 'package:app_mobile/app/di.dart';
 import 'package:app_mobile/features/home/ui/widgets/category_item.dart';
 import 'package:app_mobile/features/home/ui/widgets/home_app_bar.dart';
 import 'package:app_mobile/features/home/ui/widgets/story_item.dart';
+import 'package:app_mobile/features/my_library/ui/logic/controller/cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return CustomScrollView(
       slivers: [
         HomeAppBar(),
+        SliverToBoxAdapter(child: Gap(ResponsiveHelper.r.height(2))),
         SliverPadding(
           padding: ResponsiveHelper.r.paddingSymmetric(horizontal: 10),
           sliver: SliverToBoxAdapter(
@@ -47,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
+        SliverToBoxAdapter(child: Gap(ResponsiveHelper.r.height(2))),
         SliverPadding(
           padding: ResponsiveHelper.r.paddingSymmetric(horizontal: 10),
           sliver: SliverToBoxAdapter(
@@ -64,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     state.isGetStoriesLoading ||
                     state.isGetStoriesError) {
                   return SizedBox(
-                    height: ResponsiveHelper.r.height(15),
+                    height: ResponsiveHelper.r.height(10),
                     child: ListView.separated(
                       separatorBuilder: (context, index) =>
                           Gap(ResponsiveHelper.r.width(3)),
@@ -93,6 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
+        SliverToBoxAdapter(child: Gap(ResponsiveHelper.r.height(2))),
         SliverPadding(
           padding: ResponsiveHelper.r.paddingSymmetric(
             horizontal: 10,
@@ -123,6 +127,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: state.stories.length,
                   itemBuilder: (context, index) {
                     return StoryItem(
+                      addToLibraryTap: () => getIt<LibraryCubit>()
+                          .addStoryToLibrary(state.stories[index].id),
                       storyResponse: state.stories[index],
                       onTap: () {
                         NavigationHelper.pushNamed(

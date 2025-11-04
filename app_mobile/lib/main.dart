@@ -19,6 +19,7 @@ void main() async {
   await initHomeModule();
   await initAuthModule();
   await initStoryDetailsModule();
+  await initLibraryModule();
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,

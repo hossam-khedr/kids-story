@@ -11,6 +11,7 @@ class AppButton extends StatelessWidget {
   final Color? color;
   final Color? textColor;
   final double? textFontSize;
+  final Widget? icon;
 
   const AppButton({
     super.key,
@@ -19,7 +20,9 @@ class AppButton extends StatelessWidget {
     this.onPressed,
     required this.text,
     this.color,
-    this.textColor, this.textFontSize,
+    this.textColor,
+    this.textFontSize,
+    this.icon,
   });
 
   @override
@@ -39,12 +42,19 @@ class AppButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: AppText(
-          data: text,
-          style: TextStyle(
-            color: textColor ?? DashboardColors.whait,
-            fontSize: ResponsiveHelper.r.font(textFontSize??10),
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: ResponsiveHelper.r.width(0.5),
+          children: [
+            icon ?? const SizedBox.shrink(),
+            AppText(
+              data: text,
+              style: TextStyle(
+                color: textColor ?? DashboardColors.whait,
+                fontSize: ResponsiveHelper.r.font(textFontSize ?? 10),
+              ),
+            ),
+          ],
         ),
       ),
     );

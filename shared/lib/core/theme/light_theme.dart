@@ -6,7 +6,7 @@ import '../constants/app_colors.dart';
 class LightTheme {
   static ThemeData get theme {
     return ThemeData(
-
+      fontFamily: 'Cairo',
       useMaterial3: true,
       brightness: Brightness.light,
 

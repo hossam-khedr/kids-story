@@ -22,8 +22,7 @@ class _KidsStoryState extends State<KidsStory> {
   @override
   Widget build(BuildContext context) {
     ResponsiveHelper.instance.init(context);
-    return BaseCubitWrapper (
-      child: MaterialApp(
+    return  MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         //darkTheme: AppTheme.darkTheme,
@@ -34,7 +33,7 @@ class _KidsStoryState extends State<KidsStory> {
         initialRoute:userToken!=null? AppRoutes.layoutManager:AppRoutes.login,
 
         onGenerateRoute: RouteGenerator.generateRoute,
-      ),
+
     );
   }
 }

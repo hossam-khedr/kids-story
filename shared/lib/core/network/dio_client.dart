@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../constants/api_constants.dart';
 
@@ -52,9 +53,9 @@ class DioHelper {
   }) async {
     try {
 
-      if (token != null) {
-        dio.options.headers['Authorization'] = 'Bearer $token';
-      }
+      // if (token != null) {
+      //   dio.options.headers['Authorization'] = 'Bearer $token';
+      // }
 
 
       if (headers != null) {
@@ -189,6 +190,43 @@ class DioHelper {
       rethrow;
     }
   }
+
+  static Future<Response> uploadFileWebSupport({
+    required String url,
+    required String fieldName,
+    required XFile file,
+    Map<String, dynamic>? data,
+    String? token,
+    ProgressCallback? onSendProgress,
+  }) async {
+    try {
+      if (token != null) {
+        dio.options.headers['Authorization'] = 'Bearer $token';
+      }
+
+      final bytes = await file.readAsBytes();
+
+      FormData formData = FormData.fromMap({
+        fieldName: MultipartFile.fromBytes(
+          bytes,
+          filename: file.name,
+        ),
+        if (data != null) ...data,
+      });
+
+      final response = await dio.post(
+        url,
+        data: formData,
+        onSendProgress: onSendProgress,
+      );
+
+      return response;
+    } catch (error) {
+      debugPrint('❌ Upload File Error: $error');
+      rethrow;
+    }
+  }
+
 
 
   static void cancelAllRequests() {

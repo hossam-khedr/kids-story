@@ -1,3 +1,4 @@
+import 'package:app_mobile/features/my_library/ui/logic/controller/cubit.dart';
 import 'package:app_mobile/layout_manager/widgets/custom_bottm_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,8 +8,8 @@ import '../app/di.dart';
 import '../features/create_story/create_story_screen.dart';
 import '../features/home/ui/home_screen.dart';
 import '../features/home/ui/logic/controller/home_cubit.dart';
+import '../features/my_library/library_screen.dart';
 import '../features/profile/profile_screen.dart';
-import '../features/stores/stores_screen.dart';
 
 
 class LayoutManagerScreen extends StatefulWidget {
@@ -26,7 +27,10 @@ class _LayoutManagerScreenState extends State<LayoutManagerScreen> {
       child: HomeScreen(),
       create: (_) => getIt<HomeCubit>(),
     ),
-    StoresScreen(),
+    BlocProvider(
+        child: LibraryScreen(),
+      create: (_)=> getIt<LibraryCubit>(),
+    ),
     CreateStoryScreen(),
     ProfileScreen(),
   ];

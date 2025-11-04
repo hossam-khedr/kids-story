@@ -11,4 +11,6 @@ abstract class SvgIcons{
   static const String key = '$svgPath/key.svg';
   static const String dashboard = '$svgPath/dashboard2.svg';
   static const String settings = '$svgPath/settings2.svg';
+  static const String delete = '$svgPath/delete.svg';
+  static const String edit = '$svgPath/edit.svg';
 }

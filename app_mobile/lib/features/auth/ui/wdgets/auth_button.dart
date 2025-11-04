@@ -7,7 +7,8 @@ import 'package:shared/utils/helpers/responsive_helper.dart';
 class AuthButton extends StatelessWidget {
   final String text;
   final void Function()? onTap;
-  const AuthButton({super.key, required this.text, this.onTap});
+  final double? borderRadius;
+  const AuthButton({super.key, required this.text, this.onTap, this.borderRadius});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class AuthButton extends StatelessWidget {
         height: ResponsiveHelper.r.height(6.5),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(borderRadius??10),
           gradient: LinearGradient(
             end: Alignment.centerRight,
               begin:Alignment.centerLeft ,

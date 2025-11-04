@@ -22,7 +22,7 @@ class StoryDetailsStates {
     this.status = StoryDetailsStatus.init,
     this.errorMessage = '',
     this.data,
-    this.isSpeak = true,
+    this.isSpeak = false,
     this.isRead = false,
   });
 

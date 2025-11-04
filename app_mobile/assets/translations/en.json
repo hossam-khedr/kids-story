@@ -33,5 +33,8 @@
   "all": "All",
   "verify": "Verify",
   "resend_code": "Resend Code",
-  "otp_hint": "Enter the code that was sent to you now"
+  "otp_hint": "Enter the code that was sent to you now",
+  "all_stories": "All Stories",
+  "favorites": "Favorites",
+  "continue_reading": "Continue Reading"
 }

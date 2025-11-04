@@ -1,3 +1,4 @@
+import 'package:app_dashboard/app/di.dart';
 import 'package:app_dashboard/core/dashboard_color.dart';
 import 'package:app_dashboard/core/svg_icon.dart';
 import 'package:app_dashboard/featuers/dashboard/ui/logic/controller/cubit.dart';
@@ -10,6 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:shared/core/widgets/app_text.dart';
 import 'package:shared/utils/helpers/responsive_helper.dart';
+
+import '../../../core/widgets/custom_circle_progress.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -55,7 +58,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
             child: BlocBuilder<DashboardCubit, DashboardStats>(
               builder: (context, state) {
                 if (state.isLoading) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(
+                    child: CustomCircleProgress(
+                      color: DashboardColors.pink,
+                      size: 40,
+                    ),
+                  );
                 }
                 if (state.isError) {
                   return Center(child: AppText(data: state.errorMessage));
@@ -136,7 +144,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         child: AddItem(
                           onTap: () => showDialog(
                             context: context,
-                            builder: (context) => const CreateCategory(),
+                            builder: (context) => BlocProvider.value(
+                              value: getIt<DashboardCubit>(),
+                              child: const CreateCategory(),
+                            ),
                           ),
 
                           color: DashboardColors.lightPink,

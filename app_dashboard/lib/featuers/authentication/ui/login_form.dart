@@ -106,6 +106,7 @@ class _LoginFormState extends State<LoginForm> {
                 filled: true,
                 fillColor: DashboardColors.whait,
                 colorBorder: Colors.grey[300],
+                maxLines: 1,
               ),
               Gap(ResponsiveHelper.r.height(2)),
               Row(

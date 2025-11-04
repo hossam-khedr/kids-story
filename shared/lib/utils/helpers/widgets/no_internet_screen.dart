@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:shared/core/base_cubit/cubit.dart';
 
-class NoInternetPage extends StatelessWidget {
-  const NoInternetPage({super.key});
+
+class NoInternetScreen extends StatelessWidget {
+  const NoInternetScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +18,8 @@ class NoInternetPage extends StatelessWidget {
               "لا يوجد اتصال بالإنترنت",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () async {
-                final connected = await InternetConnectionChecker.hasConnection;
-                if (connected && context.mounted) {
-                  context.read<BaseCubit>().emit(ConnectionConnected());
-                }
-              },
-              child: const Text("إعادة المحاولة"),
-            )
+
+
           ],
         ),
       ),
