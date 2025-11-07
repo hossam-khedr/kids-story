@@ -39,7 +39,7 @@ class CategoryItem extends StatelessWidget {
               //response.image,
               height: ResponsiveHelper.r.height(20),
               width: double.infinity,
-              radius: 20,
+              borderRadius: BorderRadius.circular(20),
             ),
             AppText(
               data: response.name,

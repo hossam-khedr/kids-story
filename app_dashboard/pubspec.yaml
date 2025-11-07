@@ -24,6 +24,7 @@ dependencies:
   get_it:
   flutter_svg: ^2.2.1
   image_picker:
+  jiffy: ^6.4.3
 
 
 dev_dependencies:

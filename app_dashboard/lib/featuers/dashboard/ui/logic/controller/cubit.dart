@@ -1,5 +1,8 @@
 import 'dart:typed_data';
 
+import 'package:app_dashboard/core/requestes/category_request.dart';
+import 'package:app_dashboard/core/requestes/story_request.dart';
+import 'package:app_dashboard/core/responses/categories_names_response.dart';
 import 'package:app_dashboard/featuers/dashboard/ui/logic/controller/stats.dart';
 import 'package:app_dashboard/featuers/dashboard/ui/logic/dashboard_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,16 +31,30 @@ class DashboardCubit extends Cubit<DashboardStats> {
     );
   }
 
+  Future<void> getCategoriesNames() async {
+    emit(state.copyWith(status: DashboardStatus.getNamesLoading));
+    (await dashboardRepo.getCategoriesNames()).fold(
+          (failure) => emit(
+        state.copyWith(
+          status: DashboardStatus.getNamesError,
+          errorMessage: failure.message,
+        ),
+      ),
+          (response) => emit(
+        state.copyWith(
+          status: DashboardStatus.getNamesSuccess,
+          namesResponse: response,
+        ),
+      ),
+    );
+  }
+
   Future<void> createCategory({
-    required String name,
-    required String description,
-    required XFile file,
+    required CategoryRequest request,
   }) async {
     emit(state.copyWith(status: DashboardStatus.createCategoryLoading));
     (await dashboardRepo.createCategory(
-      name: name,
-      description: description,
-      file: file,
+     request: request,
     )).fold(
       (failure) => emit(
         state.copyWith(
@@ -50,12 +67,33 @@ class DashboardCubit extends Cubit<DashboardStats> {
     );
   }
 
+  Future<void> createStory({
+    required StoryRequest request,
+  }) async {
+    emit(state.copyWith(status: DashboardStatus.createStoryLoading));
+    (await dashboardRepo.createStory(request: request)).fold(
+          (failure) => emit(
+        state.copyWith(
+          status: DashboardStatus.createStoryError,
+          errorMessage: failure.message,
+        ),
+      ),
+          (success) =>
+          emit(state.copyWith(status: DashboardStatus.createStorySuccess)),
+    );
+  }
+
   Future<void> pickImage() async {
     final ImagePicker picker = ImagePicker();
 
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile == null) {
-      emit(state.copyWith(status: DashboardStatus.selectedFileError,errorMessage: 'Pleas select image'));
+      emit(
+        state.copyWith(
+          status: DashboardStatus.selectedFileError,
+          errorMessage: 'Pleas select image',
+        ),
+      );
       return;
     }
     final bytes = await pickedFile.readAsBytes();
@@ -66,5 +104,14 @@ class DashboardCubit extends Cubit<DashboardStats> {
         imageBytes: bytes as Uint8List?,
       ),
     );
-    }
+  }
+
+  void onCategorySelected(CategoriesNamesResponse value) {
+    emit(
+      state.copyWith(
+        status: DashboardStatus.selectCategory,
+        selectedCategory:value.name,
+      ),
+    );
+  }
 }

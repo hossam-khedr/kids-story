@@ -10,6 +10,8 @@ dependencies:
     sdk: flutter
   dio: ^5.9.0
   image_picker:
+  dartz: ^0.10.1
+  jiffy: ^6.4.3
 
   shared_preferences: ^2.5.3
   internet_connection_checker: ^3.0.1

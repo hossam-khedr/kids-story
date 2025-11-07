@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:app_dashboard/core/dashboard_color.dart';
+import 'package:app_dashboard/core/requestes/category_request.dart';
 import 'package:app_dashboard/core/widgets/app_button.dart';
 import 'package:app_dashboard/core/widgets/custom_circle_progress.dart';
 import 'package:app_dashboard/core/widgets/custom_text_form.dart';
@@ -9,7 +10,6 @@ import 'package:app_dashboard/featuers/dashboard/ui/logic/controller/stats.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:shared/core/widgets/app_text.dart';
 import 'package:shared/utils/helpers/navigation_helper.dart';
 import 'package:shared/utils/helpers/responsive_helper.dart';
@@ -26,25 +26,7 @@ class _CreateCategoryState extends State<CreateCategory> {
   final nameController = TextEditingController();
   final descController = TextEditingController();
 
-  // XFile? file;
-  // Uint8List? _imageBytes;
-  //
-  // Future<void> _pickImage() async {
-  //   final ImagePicker picker = ImagePicker();
-  //
-  //   // ✅ افتح المعرض
-  //   final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-  //
-  //   if (pickedFile != null) {
-  //     // ✅ اقرأ الصورة كـ bytes (ضروري للويب)
-  //     final bytes = await pickedFile.readAsBytes();
-  //
-  //     setState(() {
-  //       file = pickedFile;
-  //       _imageBytes = bytes as Uint8List?;
-  //     });
-  //   }
-  // }
+
 
   @override
   Widget build(BuildContext context) {
@@ -156,9 +138,12 @@ class _CreateCategoryState extends State<CreateCategory> {
                                     context
                                         .read<DashboardCubit>()
                                         .createCategory(
+                                      request: CategoryRequest(
                                           name: nameController.text,
                                           description: descController.text,
-                                          file: state.file!,
+                                          file: state.file!),
+
+                                         // file: state.file!,
                                         );
                                   },
                                 ),

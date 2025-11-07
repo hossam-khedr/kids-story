@@ -16,6 +16,8 @@ abstract class ApiConstants{
   static const String registerAdminEndPoint = '/admin/auth/register';
   static const String adminStatsDashboardEndPoint = '/admin/stats/dashboard';
   static const String adminCategoriesEndPoint = '/admin/categories/';
+  static const String adminStoriesEndPoint = '/admin/stories/';
+  static const String categoriesNamesEndPoint = '/admin/categories/names/list';
 
   static const String tokenKey = 'token';
   static const String adminAccessToken = 'accessToken';

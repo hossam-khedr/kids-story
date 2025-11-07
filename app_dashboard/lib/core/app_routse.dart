@@ -4,6 +4,7 @@ import 'package:app_dashboard/featuers/authentication/ui/logic/controller/auth_a
 import 'package:app_dashboard/featuers/categories/ui/logic/controller/cubit.dart';
 
 import 'package:app_dashboard/featuers/dashboard/ui/logic/controller/cubit.dart';
+import 'package:app_dashboard/featuers/stories/ui/logic/controller/cubit.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,6 +24,7 @@ class AppRoutes {
       providers: [
         BlocProvider(create: (_) => getIt<DashboardCubit>()),
         BlocProvider(create: (_) => getIt<CategoriesCubit>()),
+        BlocProvider(create: (_) => getIt<StoriesCubit>()),
       ],
       child: const RootScreen(),
 

@@ -1,11 +1,15 @@
+import 'package:app_dashboard/core/requestes/category_request.dart';
+import 'package:app_dashboard/core/requestes/story_request.dart';
 import 'package:app_dashboard/featuers/dashboard/data/data_sourse/remote/dashboard_remote_data_source.dart';
-import 'package:app_dashboard/featuers/dashboard/data/responses/dashboard_stats_response.dart';
+import 'package:app_dashboard/core/responses/categories_names_response.dart';
+import 'package:app_dashboard/core/responses/dashboard_stats_response.dart';
 import 'package:app_dashboard/featuers/dashboard/ui/logic/dashboard_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared/core/errors/error_handler.dart';
 import 'package:shared/core/errors/failuer.dart';
 import 'package:shared/core/network/network_info.dart';
+import 'package:shared/utils/helpers/safe_api_call.dart';
 
 class DashboardRepoImpl implements DashboardRepo {
   final NetworkInfo networkInfo;
@@ -17,41 +21,60 @@ class DashboardRepoImpl implements DashboardRepo {
   });
 
   @override
-  Future<Either<Failure, StatisticsResponse>> getDashboardStats() async {
-    try {
-      if (await networkInfo.isConnected) {
-        final response = await remoteDataSource.getDashboardStats();
-        final data = StatisticsResponse.fromJson(response.data);
-        return Right(data);
-      } else {
-        return const Left(NetworkFailure("No Internet Connection"));
-      }
-    } catch (error) {
-      final failure = ErrorHandler.handle(error);
-      return Left(failure);
-    }
+  Future<Either<Failure, void>> createCategory({
+    required CategoryRequest request,
+  }) async {
+    return ApiCallHelper().safeApiCall(
+      callback: () async {
+        await remoteDataSource.createCategory(request: request);
+      },
+    );
   }
 
   @override
-  Future<Either<Failure, void>> createCategory({
-    required String name,
-    required String description,
-    required XFile file,
+  Future<Either<Failure, List<CategoriesNamesResponse>>>
+  getCategoriesNames() async {
+    return ApiCallHelper().safeApiCall(
+      callback: () async {
+        final response = await remoteDataSource.getCategoriesNames();
+        final data = response.data['categories'] as List;
+        final result = data
+            .map((e) => CategoriesNamesResponse.fromJson(e))
+            .toList();
+        return result;
+      },
+    );
+  }
+
+  @override
+  Future<Either<Failure, void>> createStory({
+    required StoryRequest request,
   }) async {
-    try {
-      if (await networkInfo.isConnected) {
-        await remoteDataSource.createCategory(
-          name: name,
-          description: description,
-          file: file,
-        );
-        return const Right(null);
-      } else {
-        return const Left(NetworkFailure("No Internet Connection"));
-      }
-    } catch (error) {
-      final failure = ErrorHandler.handle(error);
-      return Left(failure);
-    }
+    return ApiCallHelper().safeApiCall(callback: ()async{
+      await remoteDataSource.createStory(request);
+
+    });
+    // try {
+    //   if (await networkInfo.isConnected) {
+    //     await remoteDataSource.createStory(request);
+    //     return const Right(null);
+    //   } else {
+    //     return const Left(NetworkFailure("No Internet Connection"));
+    //   }
+    // } catch (error) {
+    //   final failure = ErrorHandler.handle(error);
+    //   return Left(failure);
+    // }
+  }
+
+  @override
+  Future<Either<Failure, StatisticsResponse>> getDashboardStats() async {
+    return ApiCallHelper().safeApiCall(
+      callback: () async {
+        final response = await remoteDataSource.getDashboardStats();
+        final data = StatisticsResponse.fromJson(response.data);
+        return data;
+      },
+    );
   }
 }

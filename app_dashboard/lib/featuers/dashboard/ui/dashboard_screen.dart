@@ -5,6 +5,7 @@ import 'package:app_dashboard/featuers/dashboard/ui/logic/controller/cubit.dart'
 import 'package:app_dashboard/featuers/dashboard/ui/logic/controller/stats.dart';
 import 'package:app_dashboard/featuers/dashboard/ui/widgets/add_item.dart';
 import 'package:app_dashboard/featuers/dashboard/ui/widgets/create_category.dart';
+import 'package:app_dashboard/featuers/dashboard/ui/widgets/create_story.dart';
 import 'package:app_dashboard/featuers/dashboard/ui/widgets/dashboard_info_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -156,8 +157,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           subTitle: 'انشاء تصنيف جديد للقصص',
                         ),
                       ),
-                      const Expanded(
+                      Expanded(
                         child: AddItem(
+                          onTap: () => showDialog(
+                            context: context,
+                            builder: (context) => BlocProvider.value(
+                              value: getIt<DashboardCubit>(),
+                              child: const CreateStory(),
+                            ),
+                          ),
                           color: DashboardColors.lightBlue,
                           buttonColor: DashboardColors.blue,
                           title: 'اضافة قصه جديد',

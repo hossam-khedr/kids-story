@@ -1,32 +1,126 @@
-class StoryResponse {
-  final int id;
-  final String title;
-  final String image;
-  final String? description;
-  final String content;
+class StoriesResponse {
 
-  final int categoryId;
-  final String createdAd;
+  final List<Story> stories;
+  final Pagination pagination;
 
-  StoryResponse( {
-    required this.id,
-    required this.title,
-    required this.image,
-    required this.description,
-    required this.content,
-    required this.categoryId,
-    required this.createdAd,
+  StoriesResponse({
+    required this.stories,
+    required this.pagination,
   });
 
-  factory StoryResponse.fromJson(Map<String, dynamic> json) => StoryResponse(
-    id: json['id'] as int,
-    title: json['title'] as String,
-    image: json['image'] as String,
-    description: json['description']?.toString()??"No Descrrition",
-    content: json['content'] as String,
-    categoryId: json['category_id'] as int,
-    createdAd: json['created_at'] as String,
-  );
+  factory StoriesResponse.fromJson(Map<String, dynamic> json) {
+    return StoriesResponse(
+      stories: (json['stories'] as List<dynamic>?)
+          ?.map((e) => Story.fromJson(e))
+          .toList() ??
+          [],
+      pagination: Pagination.fromJson(json['pagination'] ?? {}),
+    );
+  }
+
 }
+
+
+class Story {
+  final int id;
+  final String title;
+  final String imageUrl;
+  final String ageRange;
+  final bool isActive;
+  final Category category;
+  final Popularity popularity;
+  final String createdAt;
+
+  Story({
+    required this.id,
+    required this.title,
+    required this.imageUrl,
+    required this.ageRange,
+    required this.isActive,
+    required this.category,
+    required this.popularity,
+    required this.createdAt,
+  });
+
+  factory Story.fromJson(Map<String, dynamic> json) {
+    return Story(
+      id: json['id'] ?? 0,
+      title: json['title'] ?? '',
+      imageUrl: json['imageUrl'] ?? '',
+      ageRange: json['ageRange'] ?? '',
+      isActive: json['isActive'] ?? false,
+      category: Category.fromJson(json['category'] ?? {}),
+      popularity: Popularity.fromJson(json['popularity'] ?? {}),
+      createdAt: json['createdAt'] ?? '',
+    );
+  }
+
+
+}
+
+
+class Category {
+  final int id;
+  final String name;
+
+  Category({
+    required this.id,
+    required this.name,
+  });
+
+  factory Category.fromJson(Map<String, dynamic> json) {
+    return Category(
+      id: json['id'] ?? 0,
+      name: json['name'] ?? '',
+    );
+  }
+}
+
+class Popularity {
+  final int inLibraries;
+  final int favorites;
+
+  Popularity({
+    required this.inLibraries,
+    required this.favorites,
+  });
+
+  factory Popularity.fromJson(Map<String, dynamic> json) {
+    return Popularity(
+      inLibraries: json['inLibraries'] ?? 0,
+      favorites: json['favorites'] ?? 0,
+    );
+  }
+}
+
+class Pagination {
+  final int currentPage;
+  final int totalPages;
+  final int totalCount;
+  final bool hasNext;
+  final bool hasPrev;
+
+  Pagination({
+    required this.currentPage,
+    required this.totalPages,
+    required this.totalCount,
+    required this.hasNext,
+    required this.hasPrev,
+  });
+
+  factory Pagination.fromJson(Map<String, dynamic> json) {
+    return Pagination(
+      currentPage: json['currentPage'] ?? 0,
+      totalPages: json['totalPages'] ?? 0,
+      totalCount: json['totalCount'] ?? 0,
+      hasNext: json['hasNext'] ?? false,
+      hasPrev: json['hasPrev'] ?? false,
+    );
+  }
+
+}
+
+
+
 
 

@@ -6,19 +6,19 @@ class CustomNetworkImage extends StatelessWidget {
   final String src;
   final double? width;
   final double? height;
-  final double? radius;
+ final BorderRadiusGeometry? borderRadius;
 
   const CustomNetworkImage({
     super.key,
     required this.src,
     this.width,
-    this.height, this.radius,
+    this.height, this.borderRadius,
   });
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(radius??0),
+      borderRadius: borderRadius??BorderRadius.circular(0),
       child: Image.network(
         src,
         width: width,
