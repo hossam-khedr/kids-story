@@ -1,3 +1,4 @@
+import 'package:app_dashboard/app/responsive_helper.dart';
 import 'package:app_dashboard/core/dashboard_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,7 +22,7 @@ class DashboardInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: ResponsiveHelper.r.paddingAll(16),
+      padding:EdgeInsets.all(context.responsive.spacingM),
       decoration: BoxDecoration(
         color: cardColor,
         borderRadius: BorderRadius.circular(30),
@@ -31,13 +32,13 @@ class DashboardInfoCard extends StatelessWidget {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: ResponsiveHelper.r.height(2),
+            spacing: context.responsive.screenHeight *0.02,
             children: [
               AppText(
                 data: title,
                 style: TextStyle(
                   color: DashboardColors.whait,
-                  fontSize: ResponsiveHelper.r.font(8),
+                  fontSize: context.responsive.isMobile?10:12,
                   fontWeight: FontWeight.w200,
                 ),
               ),
@@ -45,14 +46,14 @@ class DashboardInfoCard extends StatelessWidget {
                 data: counter,
                 style: TextStyle(
                   color: DashboardColors.whait,
-                  fontSize: ResponsiveHelper.r.font(16),
+                  fontSize: context.responsive.isMobile?16:20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ],
           ),
           Container(
-            padding: ResponsiveHelper.r.paddingAll(5),
+            padding: EdgeInsets.all(context.responsive.spacingXS),
             decoration: BoxDecoration(
               color: DashboardColors.whait.withAlpha(40),
               borderRadius: BorderRadius.circular(20),
@@ -60,7 +61,7 @@ class DashboardInfoCard extends StatelessWidget {
             child: SvgPicture.asset(
               icon,
               color: DashboardColors.whait,
-              width: ResponsiveHelper.r.width(2.5),
+              width: context.responsive.isMobile?20:25,
             ),
           ),
         ],

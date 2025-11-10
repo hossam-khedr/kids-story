@@ -18,4 +18,11 @@ class StoriesRepoImpl implements StoriesRepo{
     });
   }
 
+  @override
+  Future<Either<Failure, void>> deleteStory({required int id})async {
+    return ApiCallHelper().safeApiCall(callback: ()async{
+      await remoteDataSource.deleteStory(id: id);
+    });
+  }
+
 }

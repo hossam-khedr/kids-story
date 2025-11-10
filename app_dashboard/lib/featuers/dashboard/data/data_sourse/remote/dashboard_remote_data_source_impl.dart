@@ -18,10 +18,7 @@ class DashboardRemoteDataSourceImpl implements DashBoardRemoteDataSource {
   }
 
   @override
-  Future<dynamic> createCategory({
-    required CategoryRequest request,
-
-  }) async {
+  Future<dynamic> createCategory({required CategoryRequest request}) async {
     final response = await DioHelper.uploadFileWebSupport(
       url: ApiConstants.adminCategoriesEndPoint,
       token: adminToken,
@@ -42,17 +39,17 @@ class DashboardRemoteDataSourceImpl implements DashBoardRemoteDataSource {
   }
 
   @override
-  Future<dynamic> createStory(StoryRequest request)async {
+  Future<dynamic> createStory(StoryRequest request) async {
     final response = await DioHelper.uploadFileWebSupport(
       url: ApiConstants.adminStoriesEndPoint,
       token: adminToken,
       data: {
-        'title':request.title,
-        'content':request.content,
-        'categoryName':request.categoryName,
-        'ageMin':request.ageMin,
-        'ageMax':request.ageMax,
-        'isActive':request.isActive
+        'title': request.title,
+        'content': request.content,
+        'categoryName': request.categoryName,
+        'ageMin': request.ageMin,
+        'ageMax': request.ageMax,
+        'isActive': request.isActive,
       },
       file: request.file,
       fieldName: 'image',
@@ -60,12 +57,5 @@ class DashboardRemoteDataSourceImpl implements DashBoardRemoteDataSource {
     return response;
   }
 
-  @override
-  Future<dynamic> getAllStories()async {
-    final response = await DioHelper.getData(
-      url: ApiConstants.adminStoriesEndPoint,
-      token: adminToken,
-    );
-    return response;
-  }
+
 }

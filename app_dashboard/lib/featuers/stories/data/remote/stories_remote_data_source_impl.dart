@@ -14,4 +14,13 @@ class StoriesRemoteDataSourceImpl implements StoriesRemoteDataSource{
     return response;
   }
 
+  @override
+  Future<dynamic> deleteStory({required int id})async {
+    final response = await DioHelper.deleteData(
+      url: '${ApiConstants.adminStoriesEndPoint}$id',
+      token: adminToken,
+    );
+    return response;
+  }
+
 }

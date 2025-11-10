@@ -14,6 +14,11 @@ import 'package:app_dashboard/featuers/dashboard/data/data_sourse/remote/dashboa
 import 'package:app_dashboard/featuers/dashboard/data/repos/dashboard_repo_impl.dart';
 import 'package:app_dashboard/featuers/dashboard/ui/logic/controller/cubit.dart';
 import 'package:app_dashboard/featuers/dashboard/ui/logic/dashboard_repo.dart';
+import 'package:app_dashboard/featuers/root/data/remote/root_remote_data_source.dart';
+import 'package:app_dashboard/featuers/root/data/remote/root_remote_data_source_impl.dart';
+import 'package:app_dashboard/featuers/root/data/root_repo_impl/root_repo_impl.dart';
+import 'package:app_dashboard/featuers/root/ui/logic/controller/cubit.dart';
+import 'package:app_dashboard/featuers/root/ui/logic/repo/root_repo.dart';
 import 'package:app_dashboard/featuers/stories/data/remote/stories_remote_data_source_impl.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared/core/network/network_info.dart';
@@ -76,4 +81,15 @@ Future<void> setupStories() async {
   );
 
   getIt.registerFactory(() => StoriesCubit(repo: getIt()));
+}
+
+Future<void> setupRoot() async {
+  getIt.registerFactory<RootRemoteDataSource>(
+        () => RootRemoteDataSourceImpl(),
+  );
+  getIt.registerFactory<RootRepo>(
+        () => RootRepoImpl(dataSource: getIt()),
+  );
+
+  getIt.registerFactory(() => RootCubit(rootRepo:  getIt()));
 }

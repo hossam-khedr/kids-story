@@ -1,3 +1,4 @@
+import 'package:app_dashboard/app/responsive_helper.dart';
 import 'package:app_dashboard/core/widgets/custom_circle_progress.dart';
 import 'package:app_dashboard/featuers/categories/ui/logic/controller/cubit.dart';
 import 'package:app_dashboard/featuers/categories/ui/logic/controller/stats.dart';
@@ -29,22 +30,22 @@ class CategoryItem extends StatelessWidget {
         borderRadius: BorderRadiusGeometry.circular(30),
       ),
       child: Padding(
-        padding: ResponsiveHelper.r.paddingAll(14),
+        padding: EdgeInsets.all(context.responsive.spacingM),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: ResponsiveHelper.r.height(3),
+          spacing: context.responsive.screenHeight * 0.02,
           children: [
             CustomNetworkImage(
               src: ('${ApiConstants.baseUrl}/${response.image}'),
               //response.image,
-              height: ResponsiveHelper.r.height(20),
+              height: context.responsive.screenHeight * 0.2,
               width: double.infinity,
               borderRadius: BorderRadius.circular(20),
             ),
             AppText(
               data: response.name,
               style: TextStyle(
-                fontSize: ResponsiveHelper.r.font(8),
+                fontSize: context.responsive.isMobile?10:12,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -53,16 +54,16 @@ class CategoryItem extends StatelessWidget {
                   ' قصه'
                   '${response.storiesCount.toString()} ',
               style: TextStyle(
-                fontSize: ResponsiveHelper.r.font(8),
+                fontSize: context.responsive.isMobile?10:12,
                 fontWeight: FontWeight.w300,
               ),
             ),
             Row(
-              spacing: ResponsiveHelper.r.width(1),
+              spacing: context.responsive.screenWidth * 0.01,
               children: [
                 Expanded(
                   child: Container(
-                    padding: ResponsiveHelper.r.paddingAll(3),
+                    padding: EdgeInsets.all(context.responsive.spacingS),
                     decoration: BoxDecoration(
                       color: Colors.blue.withAlpha(50),
                       borderRadius: BorderRadius.circular(10),
@@ -70,7 +71,7 @@ class CategoryItem extends StatelessWidget {
                     child: SvgPicture.asset(
                       SvgIcons.edit,
                       color: DashboardColors.blue,
-                      height: ResponsiveHelper.r.height(3),
+                      height: context.responsive.screenHeight * 0.03,
                     ),
                   ),
                 ),
@@ -96,7 +97,7 @@ class CategoryItem extends StatelessWidget {
                           : InkWell(
                               onTap: onDelete,
                               child: Container(
-                                padding: ResponsiveHelper.r.paddingAll(3),
+                                padding: EdgeInsets.all(context.responsive.spacingS),
                                 decoration: BoxDecoration(
                                   color: Colors.red.withAlpha(50),
                                   borderRadius: BorderRadius.circular(10),
@@ -104,7 +105,7 @@ class CategoryItem extends StatelessWidget {
                                 child: SvgPicture.asset(
                                   SvgIcons.delete,
                                   color: Colors.red,
-                                  height: ResponsiveHelper.r.height(3),
+                                  height: context.responsive.screenHeight * 0.03,
                                 ),
                               ),
                             );

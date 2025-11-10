@@ -1,5 +1,7 @@
 import 'package:app_dashboard/app/di.dart';
+import 'package:app_dashboard/app/responsive_helper.dart';
 import 'package:app_dashboard/core/dashboard_color.dart';
+import 'package:app_dashboard/core/space_widget.dart';
 import 'package:app_dashboard/core/svg_icon.dart';
 import 'package:app_dashboard/featuers/dashboard/ui/logic/controller/cubit.dart';
 import 'package:app_dashboard/featuers/dashboard/ui/logic/controller/stats.dart';
@@ -32,7 +34,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: ResponsiveHelper.r.paddingAll(14),
+      padding: EdgeInsets.all(context.responsive.spacingS),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -40,20 +42,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
             data: 'مرحباً بك في لوحة التحكم',
             style: TextStyle(
               color: DashboardColors.darkGray,
-              fontSize: ResponsiveHelper.r.font(14),
+              fontSize: context.responsive.isMobile?12:14,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Gap(ResponsiveHelper.r.height(2)),
+          Space(space: context.responsive.screenHeight * 0.02),
           AppText(
             data: 'إدارة قصص الأطفال والتصنيفات بسهولة',
             style: TextStyle(
               color: DashboardColors.darkGray,
-              fontSize: ResponsiveHelper.r.font(8),
+              fontSize: context.responsive.isMobile?10:12,
               fontWeight: FontWeight.w200,
             ),
           ),
-          Gap(ResponsiveHelper.r.height(6)),
+          Space(space: context.responsive.screenHeight * 0.06),
           BlocProvider.value(
             value: BlocProvider.of<DashboardCubit>(context),
             child: BlocBuilder<DashboardCubit, DashboardStats>(
@@ -70,8 +72,52 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   return Center(child: AppText(data: state.errorMessage));
                 }
                 if (state.isSuccess) {
-                  return Row(
-                    spacing: ResponsiveHelper.r.width(1.5),
+                return  context.responsive.isMobile?
+                    Expanded(
+                      child: Column(
+                        spacing: context.responsive.screenHeight * 0.01,
+                        children: [
+                          Expanded(
+                            child: DashboardInfoCard(
+                              title: 'إجمالي التصنيفات',
+                              counter: state
+                                  .statisticsResponse!
+                                  .contentStatsResponse
+                                  .totalCategories
+                                  .toString(),
+                              cardColor: DashboardColors.pink,
+                              icon: SvgIcons.folder,
+                            ),
+                          ),
+                          Expanded(
+                            child: DashboardInfoCard(
+                              title: 'إجمالي القصص',
+                              counter: state
+                                  .statisticsResponse!
+                                  .contentStatsResponse
+                                  .totalStories
+                                  .toString(),
+                              cardColor: DashboardColors.blue,
+                              icon: SvgIcons.book,
+                            ),
+                          ),
+                          Expanded(
+                            child: DashboardInfoCard(
+                              title: 'المستخدمين النشطين',
+                              counter: state
+                                  .statisticsResponse!
+                                  .userStatsResponse
+                                  .total
+                                  .toString(),
+                              cardColor: DashboardColors.purble,
+                              icon: SvgIcons.user,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ) :
+                   Row(
+                    spacing: context.responsive.screenWidth * 0.01,
                     children: [
                       Expanded(
                         child: DashboardInfoCard(
@@ -117,29 +163,29 @@ class _DashboardScreenState extends State<DashboardScreen> {
               },
             ),
           ),
-          Gap(ResponsiveHelper.r.height(5)),
+          Space(space: context.responsive.screenHeight * 0.05),
           Card(
             margin: EdgeInsets.zero,
             color: DashboardColors.whait,
             child: Padding(
-              padding: ResponsiveHelper.r.paddingSymmetric(
-                vertical: 20,
-                horizontal: 15,
+              padding: EdgeInsets.symmetric(
+                vertical: context.responsive.spacingM,
+                horizontal: context.responsive.spacingS,
               ),
               child: Column(
-                spacing: ResponsiveHelper.r.height(3),
+                spacing: context.responsive.screenHeight * 0.03,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppText(
                     data: 'الإجراءات السريعة',
                     style: TextStyle(
                       color: DashboardColors.darkGray,
-                      fontSize: ResponsiveHelper.r.font(10),
+                      fontSize: context.responsive.isMobile?10:12,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Row(
-                    spacing: ResponsiveHelper.r.width(1),
+                    spacing: context.responsive.screenWidth * 0.01,
                     children: [
                       Expanded(
                         child: AddItem(

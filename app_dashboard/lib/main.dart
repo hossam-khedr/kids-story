@@ -13,6 +13,7 @@ void main()async {
   DioHelper.init();
   CacheHelper.initCacheHelper();
   await Jiffy.setLocale('ar_EG');
+  await setupRoot();
   await setupAuthAdmin();
   await setupDashboard();
   await setupCategories();

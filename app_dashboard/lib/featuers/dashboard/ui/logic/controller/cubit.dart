@@ -34,13 +34,13 @@ class DashboardCubit extends Cubit<DashboardStats> {
   Future<void> getCategoriesNames() async {
     emit(state.copyWith(status: DashboardStatus.getNamesLoading));
     (await dashboardRepo.getCategoriesNames()).fold(
-          (failure) => emit(
+      (failure) => emit(
         state.copyWith(
           status: DashboardStatus.getNamesError,
           errorMessage: failure.message,
         ),
       ),
-          (response) => emit(
+      (response) => emit(
         state.copyWith(
           status: DashboardStatus.getNamesSuccess,
           namesResponse: response,
@@ -49,13 +49,9 @@ class DashboardCubit extends Cubit<DashboardStats> {
     );
   }
 
-  Future<void> createCategory({
-    required CategoryRequest request,
-  }) async {
+  Future<void> createCategory({required CategoryRequest request}) async {
     emit(state.copyWith(status: DashboardStatus.createCategoryLoading));
-    (await dashboardRepo.createCategory(
-     request: request,
-    )).fold(
+    (await dashboardRepo.createCategory(request: request)).fold(
       (failure) => emit(
         state.copyWith(
           status: DashboardStatus.createCategoryError,
@@ -67,21 +63,21 @@ class DashboardCubit extends Cubit<DashboardStats> {
     );
   }
 
-  Future<void> createStory({
-    required StoryRequest request,
-  }) async {
+  Future<void> createStory({required StoryRequest request}) async {
     emit(state.copyWith(status: DashboardStatus.createStoryLoading));
     (await dashboardRepo.createStory(request: request)).fold(
-          (failure) => emit(
+      (failure) => emit(
         state.copyWith(
           status: DashboardStatus.createStoryError,
           errorMessage: failure.message,
         ),
       ),
-          (success) =>
+      (success) =>
           emit(state.copyWith(status: DashboardStatus.createStorySuccess)),
     );
   }
+
+
 
   Future<void> pickImage() async {
     final ImagePicker picker = ImagePicker();
@@ -110,7 +106,7 @@ class DashboardCubit extends Cubit<DashboardStats> {
     emit(
       state.copyWith(
         status: DashboardStatus.selectCategory,
-        selectedCategory:value.name,
+        selectedCategory: value.name,
       ),
     );
   }

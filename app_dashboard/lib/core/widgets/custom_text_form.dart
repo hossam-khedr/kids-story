@@ -17,6 +17,7 @@ class CustomTextForm extends StatefulWidget {
   final int? maxLines;
   final bool? readOnly;
   final void Function()? onTap;
+  final void Function(String)? onChanged;
 
   const CustomTextForm({
     super.key,
@@ -25,7 +26,7 @@ class CustomTextForm extends StatefulWidget {
     this.filled = true,
     this.fillColor,
     this.prefixIcon,
-    this.controller, this.colorBorder, this.maxLines, this.onTap, this.readOnly,
+    this.controller, this.colorBorder, this.maxLines, this.onTap, this.readOnly, this.onChanged,
   });
 
   @override
@@ -44,6 +45,7 @@ class _CustomTextFormState extends State<CustomTextForm> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged:widget.onChanged ,
       onTap:widget.onTap ,
       readOnly:widget.readOnly??false ,
       controller: widget.controller,

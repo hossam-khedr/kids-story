@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared/core/errors/error_handler.dart';
 import 'package:shared/core/errors/failuer.dart';
 import 'package:shared/core/network/network_info.dart';
+import 'package:shared/responses/story_response.dart';
 import 'package:shared/utils/helpers/safe_api_call.dart';
 
 class DashboardRepoImpl implements DashboardRepo {
@@ -50,21 +51,11 @@ class DashboardRepoImpl implements DashboardRepo {
   Future<Either<Failure, void>> createStory({
     required StoryRequest request,
   }) async {
-    return ApiCallHelper().safeApiCall(callback: ()async{
-      await remoteDataSource.createStory(request);
-
-    });
-    // try {
-    //   if (await networkInfo.isConnected) {
-    //     await remoteDataSource.createStory(request);
-    //     return const Right(null);
-    //   } else {
-    //     return const Left(NetworkFailure("No Internet Connection"));
-    //   }
-    // } catch (error) {
-    //   final failure = ErrorHandler.handle(error);
-    //   return Left(failure);
-    // }
+    return ApiCallHelper().safeApiCall(
+      callback: () async {
+        await remoteDataSource.createStory(request);
+      },
+    );
   }
 
   @override
@@ -77,4 +68,5 @@ class DashboardRepoImpl implements DashboardRepo {
       },
     );
   }
+
 }

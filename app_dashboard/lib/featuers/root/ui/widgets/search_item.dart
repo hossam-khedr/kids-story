@@ -1,9 +1,3 @@
-import 'dart:math';
-
-import 'package:app_dashboard/core/dashboard_color.dart';
-import 'package:app_dashboard/core/space_widget.dart';
-import 'package:app_dashboard/featuers/stories/ui/logic/controller/cubit.dart';
-import 'package:app_dashboard/featuers/stories/ui/logic/controller/stats.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,23 +6,18 @@ import 'package:shared/core/widgets/app_text.dart';
 import 'package:shared/core/widgets/custom_network_image.dart';
 import 'package:shared/responses/story_response.dart';
 import 'package:shared/utils/date_formatter.dart';
-import 'package:shared/utils/helpers/responsive_helper.dart';
 import 'package:shared/utils/helpers/helper_functions.dart';
+import 'package:shared/utils/helpers/responsive_helper.dart';
 
+import '../../../../core/dashboard_color.dart';
+import '../../../../core/space_widget.dart';
 import '../../../../core/svg_icon.dart';
-import '../../../../core/widgets/custom_circle_progress.dart';
 
-class StoryItem extends StatelessWidget {
+
+class SearchItem extends StatelessWidget {
   final Story story;
-  final void Function()? onDelete;
-  final bool isDeleting;
 
-  const StoryItem({
-    super.key,
-    required this.story,
-    this.onDelete,
-    required this.isDeleting,
-  });
+  const SearchItem({super.key, required this.story});
 
   @override
   Widget build(BuildContext context) {
@@ -97,29 +86,20 @@ class StoryItem extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      child: BlocConsumer<StoriesCubit, StoriesStats>(
-                        listener: (context, state) {},
-                        builder: (context, state) {
-                          return isDeleting
-                              ? const CustomCircleProgress(
-                                  color: DashboardColors.pink,
-                                )
-                              : InkWell(
-                                  onTap: onDelete,
-                                  child: Container(
-                                    padding: ResponsiveHelper.r.paddingAll(4),
-                                    decoration: BoxDecoration(
-                                      color: Colors.red.withAlpha(50),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: SvgPicture.asset(
-                                      SvgIcons.delete,
-                                      color: Colors.red,
-                                      height: ResponsiveHelper.r.height(3.5),
-                                    ),
-                                  ),
-                                );
-                        },
+                      child: InkWell(
+                        onTap: () {},
+                        child: Container(
+                          padding: ResponsiveHelper.r.paddingAll(4),
+                          decoration: BoxDecoration(
+                            color: Colors.red.withAlpha(50),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: SvgPicture.asset(
+                            SvgIcons.delete,
+                            color: Colors.red,
+                            height: ResponsiveHelper.r.height(3.5),
+                          ),
+                        ),
                       ),
                     ),
                   ],

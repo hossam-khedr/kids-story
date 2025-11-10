@@ -11,5 +11,5 @@ abstract class DashBoardRemoteDataSource {
 
   Future<dynamic> createStory(StoryRequest request);
 
-  Future<dynamic>getAllStories();
+
 }

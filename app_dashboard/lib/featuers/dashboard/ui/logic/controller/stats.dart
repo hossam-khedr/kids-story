@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:app_dashboard/core/responses/categories_names_response.dart';
 import 'package:app_dashboard/core/responses/dashboard_stats_response.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared/responses/story_response.dart';
 
 enum DashboardStatus {
   init,
@@ -21,6 +22,7 @@ enum DashboardStatus {
   getNamesError,
   getNamesSuccess,
   selectCategory,
+
 }
 
 class DashboardStats {
@@ -32,6 +34,7 @@ class DashboardStats {
   final Uint8List? imageBytes;
   final List<CategoriesNamesResponse>namesResponse;
 
+
   DashboardStats({
     this.errorMessage = '',
     this.status = DashboardStatus.init,
@@ -40,6 +43,7 @@ class DashboardStats {
     this.imageBytes,
     this.namesResponse = const [],
     this.selectedCategory,
+
   });
 
   bool get isLoading => status == DashboardStatus.loading;
@@ -60,6 +64,7 @@ class DashboardStats {
   bool get isGetNamesError => status == DashboardStatus.getNamesError;
   bool get isSelectedCategory => status == DashboardStatus.selectCategory;
 
+
   DashboardStats copyWith({
     final String? errorMessage,
     final StatisticsResponse? statisticsResponse,
@@ -68,6 +73,7 @@ class DashboardStats {
     final Uint8List? imageBytes,
     final List<CategoriesNamesResponse>?namesResponse,
      String? selectedCategory,
+    final List<Story>?storiesSearch
   }) {
     return DashboardStats(
       errorMessage: errorMessage ?? this.errorMessage,
@@ -77,6 +83,7 @@ class DashboardStats {
       imageBytes: imageBytes ?? this.imageBytes,
       namesResponse: namesResponse ?? this.namesResponse,
       selectedCategory: selectedCategory ?? this.selectedCategory,
+
     );
   }
 }

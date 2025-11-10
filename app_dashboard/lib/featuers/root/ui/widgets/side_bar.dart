@@ -1,6 +1,8 @@
+import 'package:app_dashboard/app/responsive_helper.dart';
 import 'package:app_dashboard/core/dashboard_color.dart';
+import 'package:app_dashboard/core/space_widget.dart';
 import 'package:app_dashboard/core/svg_icon.dart';
-import 'package:app_dashboard/featuers/root/widgets/side_bar_item.dart';
+import 'package:app_dashboard/featuers/root/ui/widgets/side_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:shared/core/widgets/app_text.dart';
@@ -24,15 +26,16 @@ class RootSideBar extends StatelessWidget {
       margin: EdgeInsets.zero,
       elevation: 0.5,
       child: Padding(
-        padding: ResponsiveHelper.r.paddingAll(20),
+        padding: EdgeInsets.all(context.responsive.spacingM),
         child: Column(
           children: [
             Row(
-              spacing: ResponsiveHelper.r.width(1),
+              spacing: context.responsive.screenWidth * 0.01,
               children: [
-                const CircleAvatar(
+                 CircleAvatar(
+                  radius:context.isMobile?20:30 ,
                   backgroundColor: DashboardColors.pink,
-                  child: Icon(
+                  child: const Icon(
                     Icons.book_outlined,
                     color: DashboardColors.whait,
                   ),
@@ -45,7 +48,7 @@ class RootSideBar extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: DashboardColors.darkGray,
-                        fontSize: ResponsiveHelper.r.font(12),
+                        fontSize: context.responsive.fontSize(12),
                       ),
                     ),
                     AppText(
@@ -53,16 +56,16 @@ class RootSideBar extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.normal,
                         color: DashboardColors.darkGray,
-                        fontSize: ResponsiveHelper.r.font(8),
+                        fontSize: context.responsive.fontSize(8),
                       ),
                     ),
                   ],
                 ),
               ],
             ),
-            Gap(ResponsiveHelper.r.height(4)),
+            Space(space: context.responsive.screenHeight * 0.04),
             const Divider(),
-            Gap(ResponsiveHelper.r.height(2)),
+            Space(space: context.responsive.screenHeight * 0.02),
             for (int i = 0; i < sideBarListItem.length; i++)
               Column(
                 children: [
@@ -71,7 +74,7 @@ class RootSideBar extends StatelessWidget {
                       model: sideBarListItem[i],
                       isSelectedItem:currentIndex==i
                   ),
-                  Gap(ResponsiveHelper.r.height(1))
+                  Space(space: context.responsive.screenHeight * 0.01),
                 ],
               )
           ],

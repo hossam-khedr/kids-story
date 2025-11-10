@@ -1,10 +1,15 @@
+import 'package:app_dashboard/app/di.dart';
+import 'package:app_dashboard/app/responsive_helper.dart';
 import 'package:app_dashboard/core/dashboard_color.dart';
+import 'package:app_dashboard/core/space_widget.dart';
 import 'package:app_dashboard/core/svg_icon.dart';
 import 'package:app_dashboard/core/widgets/app_button.dart';
 import 'package:app_dashboard/core/widgets/custom_circle_progress.dart';
 import 'package:app_dashboard/featuers/categories/ui/logic/controller/cubit.dart';
 import 'package:app_dashboard/featuers/categories/ui/logic/controller/stats.dart';
 import 'package:app_dashboard/featuers/categories/ui/widgets/category_item.dart';
+import 'package:app_dashboard/featuers/dashboard/ui/logic/controller/cubit.dart';
+import 'package:app_dashboard/featuers/dashboard/ui/widgets/create_category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -30,11 +35,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: ResponsiveHelper.r.paddingAll(14),
+      padding: EdgeInsets.all(context.responsive.spacingM),
       child: BlocBuilder<CategoriesCubit, CategoriesStats>(
         builder: (context, stat) {
           if (stat.isLoading) {
-            return  const Center(
+            return const Center(
               child: CustomCircleProgress(
                 color: DashboardColors.pink,
                 size: 40,
@@ -55,20 +60,20 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
-                      spacing: ResponsiveHelper.r.height(1),
+                      spacing: context.responsive.screenHeight * 0.01,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         AppText(
                           data: 'إدارة التصنيفات',
                           style: TextStyle(
-                            fontSize: ResponsiveHelper.r.font(14),
+                            fontSize: context.responsive.isMobile ?12:14,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         AppText(
                           data: 'تنظيم وإدارة تصنيفات القصص',
                           style: TextStyle(
-                            fontSize: ResponsiveHelper.r.font(8),
+                            fontSize: context.responsive.isMobile?8:12,
                             fontWeight: FontWeight.w300,
                           ),
                         ),
@@ -81,28 +86,35 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         color: DashboardColors.whait,
                         size: 20,
                       ),
-                      width: ResponsiveHelper.r.width(13),
-                      textFontSize: ResponsiveHelper.r.font(6),
+                      width:context.responsive.isMobile?130:170,
+                      textFontSize: context.responsive.fontSize(6),
+                      onPressed: () {
+                        showDialog(context: context, builder: (context) =>
+                            BlocProvider.value(
+                                value:getIt<DashboardCubit>(),
+                                child: const CreateCategory()));
+                      },
                     ),
                   ],
                 ),
-                Gap(ResponsiveHelper.r.height(6)),
+                Space(space:  context.responsive.screenHeight * 0.06),
                 Expanded(
                   child: GridView.builder(
                     itemCount: stat.data.length,
                     gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                          childAspectRatio: 0.84,
-                        ),
+                     SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: context.responsive.gridColumns,
+                      crossAxisSpacing: context.responsive.screenWidth * 0.010,
+                      mainAxisSpacing: context.responsive.screenHeight * 0.010,
+                      childAspectRatio:context.isMobile?1.1: 0.84,
+                    ),
                     itemBuilder: (context, index) {
                       return CategoryItem(
                         response: stat.data[index],
-                        onDelete: () => context
-                            .read<CategoriesCubit>()
-                            .deleteCategory(id: stat.data[index].id),
+                        onDelete: () =>
+                            context
+                                .read<CategoriesCubit>()
+                                .deleteCategory(id: stat.data[index].id),
                       );
                     },
                   ),

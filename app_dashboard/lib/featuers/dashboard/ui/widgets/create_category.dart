@@ -1,7 +1,9 @@
 import 'dart:typed_data';
 
+import 'package:app_dashboard/app/responsive_helper.dart';
 import 'package:app_dashboard/core/dashboard_color.dart';
 import 'package:app_dashboard/core/requestes/category_request.dart';
+import 'package:app_dashboard/core/space_widget.dart';
 import 'package:app_dashboard/core/widgets/app_button.dart';
 import 'package:app_dashboard/core/widgets/custom_circle_progress.dart';
 import 'package:app_dashboard/core/widgets/custom_text_form.dart';
@@ -33,15 +35,15 @@ class _CreateCategoryState extends State<CreateCategory> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Dialog(
-        insetPadding: ResponsiveHelper.r.paddingSymmetric(
-          horizontal: 290,
-          vertical: 10,
+        insetPadding: EdgeInsets.symmetric(
+          horizontal: context.responsive.isMobile?100:150,
+          vertical: 10
         ),
         backgroundColor: DashboardColors.whait,
         child: Padding(
-          padding: ResponsiveHelper.r.paddingSymmetric(
-            horizontal: 14,
-            vertical: 16,
+          padding: EdgeInsets.symmetric(
+            horizontal:context.responsive.spacingM ,
+            vertical: context.responsive.spacingL,
           ),
           child: BlocProvider.value(
             value: BlocProvider.of<DashboardCubit>(context),
@@ -71,14 +73,14 @@ class _CreateCategoryState extends State<CreateCategory> {
                       data: 'إضافة تصنيف جديد',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Gap(ResponsiveHelper.r.height(5)),
+                    Space(space: context.responsive.screenHeight * 0.05),
                     const Divider(height: 0.1),
-                    Gap(ResponsiveHelper.r.height(5)),
+                    Space(space: context.responsive.screenHeight * 0.05),
                     AppText(
                       data: 'اسم التصنيف',
-                      style: TextStyle(fontSize: ResponsiveHelper.r.font(8)),
+                      style: TextStyle(fontSize: context.responsive.fontSize(8)),
                     ),
-                    Gap(ResponsiveHelper.r.height(2)),
+                    Space(space: context.responsive.screenHeight * 0.02),
                     CustomTextForm(
                       controller: nameController,
                       hint: 'ادخل اسم التصنيف',
@@ -86,12 +88,12 @@ class _CreateCategoryState extends State<CreateCategory> {
                       fillColor: DashboardColors.whait,
                       colorBorder: Colors.grey[300],
                     ),
-                    Gap(ResponsiveHelper.r.height(5)),
+                    Space(space: context.responsive.screenHeight * 0.05),
                     AppText(
                       data: 'وصف التصنيف',
-                      style: TextStyle(fontSize: ResponsiveHelper.r.font(8)),
+                      style: TextStyle(fontSize: context.responsive.fontSize(8)),
                     ),
-                    Gap(ResponsiveHelper.r.height(2)),
+                    Space(space: context.responsive.screenHeight * 0.02),
                     CustomTextForm(
                       controller: descController,
                       hint: 'وصف مختصر عن التصنيف',
@@ -100,12 +102,12 @@ class _CreateCategoryState extends State<CreateCategory> {
                       maxLines: 4,
                       colorBorder: Colors.grey[300],
                     ),
-                    Gap(ResponsiveHelper.r.height(5)),
+                    Space(space: context.responsive.screenHeight * 0.05),
                     AppText(
                       data: 'رابط الصوره',
-                      style: TextStyle(fontSize: ResponsiveHelper.r.font(8)),
+                      style: TextStyle(fontSize: context.responsive.fontSize(8)),
                     ),
-                    Gap(ResponsiveHelper.r.height(2)),
+                    Space(space: context.responsive.screenHeight * 0.02),
                     CustomTextForm(
                       readOnly: true,
                       onTap: () {
@@ -118,11 +120,11 @@ class _CreateCategoryState extends State<CreateCategory> {
                       fillColor: DashboardColors.whait,
                       colorBorder: Colors.grey[300],
                     ),
-                    Gap(ResponsiveHelper.r.height(5)),
+                    Space(space: context.responsive.screenHeight * 0.05),
                     const Divider(height: 0.1),
-                    Gap(ResponsiveHelper.r.height(5)),
+                    Space(space: context.responsive.screenHeight * 0.05),
                     Row(
-                      spacing: ResponsiveHelper.r.width(2),
+                      spacing:  context.responsive.screenHeight * 0.02,
                       children: [
                         state.isCreateCategoryLoading
                             ? const Center(

@@ -1,3 +1,4 @@
+import 'package:app_dashboard/app/responsive_helper.dart';
 import 'package:app_dashboard/core/requestes/story_request.dart';
 import 'package:app_dashboard/core/space_widget.dart';
 import 'package:app_dashboard/core/widgets/custom_circle_progress.dart';
@@ -34,16 +35,13 @@ class _CreateStoryState extends State<CreateStory> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Dialog(
-        insetPadding: ResponsiveHelper.r.paddingSymmetric(
-          horizontal: 220,
-          vertical: 10,
+        insetPadding: EdgeInsets.symmetric(
+            horizontal: context.responsive.isMobile?100:150,
+            vertical: 10
         ),
         backgroundColor: DashboardColors.whait,
         child: Padding(
-          padding: ResponsiveHelper.r.paddingSymmetric(
-            horizontal: 14,
-            vertical: 16,
-          ),
+          padding: EdgeInsets.all(context.responsive.spacingM),
           child: SingleChildScrollView(
             child: BlocProvider.value(
               value: context.read<DashboardCubit>(),
@@ -61,14 +59,14 @@ class _CreateStoryState extends State<CreateStory> {
                         data: 'إضافة قصة جديد',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Gap(ResponsiveHelper.r.height(5)),
+                      Space(space: context.responsive.screenHeight * 0.05),
                       const Divider(height: 0.1),
-                      Space(space: ResponsiveHelper.r.height(5)),
+                      Space(space: context.responsive.screenHeight * 0.05),
                       AppText(
                         data: 'عنوان القصه',
-                        style: TextStyle(fontSize: ResponsiveHelper.r.font(8)),
+                        style: TextStyle(fontSize: context.responsive.fontSize(8)),
                       ),
-                      Space(space: ResponsiveHelper.r.height(2)),
+                      Space(space: context.responsive.screenHeight * 0.02),
                       CustomTextForm(
                         controller: nameController,
                         hint: 'ادخل عنوان القصه',
@@ -76,14 +74,14 @@ class _CreateStoryState extends State<CreateStory> {
                         fillColor: DashboardColors.whait,
                         colorBorder: Colors.grey[300],
                       ),
-                      Space(space: ResponsiveHelper.r.height(5)),
+                      Space(space: context.responsive.screenHeight * 0.05),
                       AppText(
                         data: 'العمر من و الي',
-                        style: TextStyle(fontSize: ResponsiveHelper.r.font(8)),
+                        style: TextStyle(fontSize: context.responsive.fontSize(8)),
                       ),
-                      Space(space: ResponsiveHelper.r.height(2)),
+                      Space(space: context.responsive.screenHeight * 0.02),
                       Row(
-                        spacing: ResponsiveHelper.r.width(3),
+                        spacing: context.responsive.screenWidth * 0.03,
                         children: [
                           Expanded(
                             child: CustomTextForm(
@@ -105,12 +103,12 @@ class _CreateStoryState extends State<CreateStory> {
                           ),
                         ],
                       ),
-                      Space(space: ResponsiveHelper.r.height(5)),
+                      Space(space: context.responsive.screenHeight * 0.05),
                       AppText(
                         data: 'رابط الصوره',
-                        style: TextStyle(fontSize: ResponsiveHelper.r.font(8)),
+                        style: TextStyle(fontSize: context.responsive.fontSize(8)),
                       ),
-                      Space(space: ResponsiveHelper.r.height(2)),
+                      Space(space: context.responsive.screenHeight * 0.02),
                       CustomTextForm(
                         readOnly: true,
                         onTap: () {
@@ -123,19 +121,19 @@ class _CreateStoryState extends State<CreateStory> {
                         fillColor: DashboardColors.whait,
                         colorBorder: Colors.grey[300],
                       ),
-                      Space(space: ResponsiveHelper.r.height(5)),
+                      Space(space: context.responsive.screenHeight * 0.05),
                       AppText(
                         data: 'التصنيف',
-                        style: TextStyle(fontSize: ResponsiveHelper.r.font(8)),
+                        style: TextStyle(fontSize: context.responsive.fontSize(8)),
                       ),
-                      Space(space: ResponsiveHelper.r.height(2)),
+                      Space(space: context.responsive.screenHeight * 0.02),
                       const CategoriesNames(),
-                      Space(space: ResponsiveHelper.r.height(5)),
+                      Space(space: context.responsive.screenHeight * 0.05),
                       AppText(
                         data: 'محتوى القصة',
-                        style: TextStyle(fontSize: ResponsiveHelper.r.font(8)),
+                        style: TextStyle(fontSize: context.responsive.fontSize(8)),
                       ),
-                      Space(space: ResponsiveHelper.r.height(2)),
+                      Space(space: context.responsive.screenHeight * 0.02),
                       CustomTextForm(
                         controller: contentController,
                         hint: 'اكتب محتوي القصه هنا',
@@ -144,11 +142,11 @@ class _CreateStoryState extends State<CreateStory> {
                         colorBorder: Colors.grey[300],
                         maxLines: 12,
                       ),
-                      Space(space: ResponsiveHelper.r.height(5)),
+                      Space(space: context.responsive.screenHeight * 0.05),
                       const Divider(height: 0.1),
-                      Space(space: ResponsiveHelper.r.height(5)),
+                      Space(space: context.responsive.screenHeight * 0.05),
                       Row(
-                        spacing: ResponsiveHelper.r.width(2),
+                        spacing: context.responsive.screenWidth * 0.02,
                         children: [
                           state.isCreateStoryLoading
                               ? const Center(

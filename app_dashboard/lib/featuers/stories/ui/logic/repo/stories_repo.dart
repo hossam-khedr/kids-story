@@ -3,4 +3,5 @@ import 'package:shared/core/errors/failuer.dart';
 import 'package:shared/responses/story_response.dart';
 abstract class StoriesRepo{
   Future<Either<Failure,StoriesResponse>>getAllStories();
+  Future<Either<Failure,void>>deleteStory({required int id});
 }
